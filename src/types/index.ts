@@ -83,12 +83,12 @@ export interface SectionProps extends BaseComponentProps {
 }
 
 export interface CardProps extends BaseComponentProps {
-  readonly variant?: 'default' | 'elevated' | 'bordered';
+  readonly variant?: 'default' | 'elevated' | 'bordered' | 'gradient' | 'gradient-border';
   readonly padding?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export interface ButtonProps extends BaseComponentProps {
-  readonly variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  readonly variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient' | 'gradient-outline';
   readonly size?: 'sm' | 'md' | 'lg';
   readonly disabled?: boolean;
   readonly loading?: boolean;

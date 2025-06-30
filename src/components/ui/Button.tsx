@@ -27,10 +27,12 @@ const Button: React.FC<ButtonProps> = ({
   const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variantClasses = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm focus:ring-primary-500',
-    secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 focus:ring-secondary-500',
-    outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500',
-    ghost: 'text-primary-600 hover:bg-primary-50 focus:ring-primary-500'
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm hover:shadow-medium focus:ring-primary-500 transition-all duration-300',
+    secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 focus:ring-secondary-500 transition-all duration-300',
+    outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:shadow-soft focus:ring-primary-500 transition-all duration-300',
+    ghost: 'text-primary-600 hover:bg-primary-50 hover:shadow-soft focus:ring-primary-500 transition-all duration-300',
+    gradient: 'bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700 hover:from-primary-700 hover:via-accent-700 hover:to-primary-800 text-white shadow-medium hover:shadow-large focus:ring-primary-500 transition-all duration-300',
+    'gradient-outline': 'relative border-2 border-transparent bg-gradient-to-r from-primary-600 via-accent-600 to-primary-700 bg-clip-border text-transparent bg-clip-text hover:shadow-medium focus:ring-primary-500 transition-all duration-300'
   };
 
   const sizeClasses = {

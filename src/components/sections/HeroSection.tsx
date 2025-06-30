@@ -28,12 +28,26 @@ const HeroSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
-          {/* Profile Image Placeholder - Puede ser agregada después */}
+          {/* Profile Image */}
           <div className="mb-8 animate-fade-in">
-            <div className="w-32 h-32 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full mx-auto flex items-center justify-center shadow-large">
-              <span className="text-4xl font-bold text-white">
-                {PERSONAL_INFO.name.split(' ').map(n => n[0]).join('')}
-              </span>
+            <div className="relative w-40 h-40 mx-auto group">
+              {/* Gradient border ring */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400 via-accent-500 to-primary-600 p-1 shadow-xl animate-pulse-slow">
+                <div className="w-full h-full rounded-full bg-white p-1">
+                  <img
+                    src="/perfil.jpeg"
+                    alt={`${PERSONAL_INFO.name} - Desarrollador Full Stack`}
+                    className="w-full h-full rounded-full object-cover shadow-large transition-all duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full shadow-medium animate-bounce-slow"></div>
+              <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full shadow-medium animate-float"></div>
+              
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400/20 via-accent-500/20 to-primary-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md scale-110"></div>
             </div>
           </div>
 
