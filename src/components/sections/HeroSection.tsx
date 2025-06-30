@@ -87,22 +87,32 @@ const HeroSection: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="mb-12 animate-slide-up" style={{ animationDelay: '0.6s' }}>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4">
               <Button
                 variant="primary"
                 size="lg"
                 onClick={() => scrollToSection('projects')}
-                className="min-w-48"
+                className="min-w-44"
               >
                 <Icon name="FolderOpen" size={20} className="mr-2" />
                 Ver Proyectos
+              </Button>
+              <Button
+                variant="gradient"
+                size="lg"
+                href="/Kenyi_Ivan_Vega_Aliaga_CV_2025_6_25.pdf"
+                external
+                className="min-w-44"
+              >
+                <Icon name="Download" size={20} className="mr-2" />
+                Descargar CV
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 href="mailto:kenyiva45@gmail.com"
                 external
-                className="min-w-48"
+                className="min-w-44"
               >
                 <Icon name="Mail" size={20} className="mr-2" />
                 Contáctame

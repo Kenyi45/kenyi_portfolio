@@ -119,6 +119,26 @@ const ContactSection: React.FC = () => {
             </div>
           </div>
 
+          {/* CV Download */}
+          <div>
+            <h3 className="text-xl font-bold text-neutral-900 mb-6">
+              Currículum Vitae
+            </h3>
+            <Button
+              variant="gradient"
+              size="lg"
+              href="/Kenyi_Ivan_Vega_Aliaga_CV_2025_6_25.pdf"
+              external
+              className="w-full"
+            >
+              <Icon name="Download" size={20} className="mr-2" />
+              Descargar CV Completo
+            </Button>
+            <p className="text-xs text-neutral-500 mt-2 text-center">
+              Documento PDF con información completa
+            </p>
+          </div>
+
           {/* Availability */}
           <Card variant="elevated" padding="lg">
             <div className="flex items-center">
