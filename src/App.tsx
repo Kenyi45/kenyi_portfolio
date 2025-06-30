@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// ============================================================================
+// MAIN APP COMPONENT - Portfolio Application
+// ============================================================================
 
-function App() {
+import React from 'react';
+import { Header, Footer } from './components/layout';
+import {
+  HeroSection,
+  AboutSection,
+  SkillsSection,
+  ExperienceSection,
+  ProjectsSection,
+  EducationSection,
+  ContactSection
+} from './components/sections';
+
+// Principio Single Responsibility: App solo maneja la estructura principal
+// Principio Open/Closed: Extensible para nuevas secciones sin modificar el core
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-white">
+      {/* Navigation Header */}
+      <Header />
+      
+      {/* Main Content */}
+      <main className="relative">
+        {/* Hero Section */}
+        <HeroSection />
+        
+        {/* About Section */}
+        <AboutSection />
+        
+        {/* Skills Section */}
+        <SkillsSection />
+        
+        {/* Experience Section */}
+        <ExperienceSection />
+        
+        {/* Projects Section */}
+        <ProjectsSection />
+        
+        {/* Education Section */}
+        <EducationSection />
+        
+        {/* Contact Section */}
+        <ContactSection />
+      </main>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
