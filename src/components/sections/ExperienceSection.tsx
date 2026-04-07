@@ -1,5 +1,5 @@
 // ============================================================================
-// EXPERIENCE
+// EXPERIENCE — timeline alternado (izq / der) en vista amplia
 // ============================================================================
 
 import React from 'react';
@@ -28,6 +28,60 @@ const ExperienceSection: React.FC = () => {
     return remainingMonths > 0 ? `${years} años ${remainingMonths} meses` : `${years} años`;
   };
 
+  const jobCard = (job: (typeof EXPERIENCE)[number]) => (
+    <Card variant="elevated" padding="lg" className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/40 to-transparent pointer-events-none" aria-hidden />
+
+      <div className="relative mb-6">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-primary-700 mb-2">
+          {formatDateRange(job.startDate, job.endDate)} · {calculateDuration(job.startDate, job.endDate)}
+        </p>
+        <h3 className="font-display text-[length:var(--text-2xl)] font-bold text-neutral-900">{job.position}</h3>
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-neutral-600 text-[length:var(--text-sm)]">
+          <span className="inline-flex items-center gap-1.5">
+            <Icon name="Building" size={16} className="text-accent-700 shrink-0" aria-hidden />
+            {job.company}
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Icon name="MapPin" size={16} className="text-neutral-500 shrink-0" aria-hidden />
+            {job.location}
+          </span>
+        </div>
+      </div>
+
+      <p className="text-neutral-600 text-[length:var(--text-sm)] leading-relaxed mb-6">{job.description}</p>
+
+      <div className="mb-6">
+        <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3 flex items-center gap-2">
+          <Icon name="Trophy" size={16} className="text-primary-600" aria-hidden />
+          Impacto
+        </h4>
+        <ul className="space-y-2.5">
+          {job.achievements.map((achievement, i) => (
+            <li key={i} className="flex gap-3 text-[length:var(--text-sm)] text-neutral-700 leading-relaxed">
+              <Icon name="CheckCircle" size={16} className="text-emerald-600 shrink-0 mt-0.5" aria-hidden />
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Stack</h4>
+        <div className="flex flex-wrap gap-2">
+          {job.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-2.5 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-xs font-mono text-neutral-700"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Card>
+  );
+
   return (
     <Section
       id="experience"
@@ -36,76 +90,54 @@ const ExperienceSection: React.FC = () => {
       subtitle="Roles con responsabilidad en integración, producto interno y confiabilidad operativa."
       className="bg-white/70 border-y border-neutral-200/80"
     >
-      <div className="max-w-3xl mx-auto relative pl-8 sm:pl-10">
+      <div className="max-w-5xl mx-auto relative">
+        {/* Línea vertical móvil (única) */}
         <div
-          className="absolute left-[7px] sm:left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-primary-300 via-accent-300 to-primary-400"
+          className="pointer-events-none md:hidden absolute left-[11px] top-3 bottom-3 w-px bg-gradient-to-b from-primary-300 via-accent-300 to-primary-400"
           aria-hidden
         />
 
-        <ul className="space-y-12">
-          {EXPERIENCE.map((job, index) => (
-            <li key={job.id} className="relative">
-              <div
-                className={clsx(
-                  'absolute left-[-1.55rem] sm:left-[-1.85rem] top-6 h-3 w-3 rounded-full border-2 border-white bg-primary-500 shadow-[0_0_0_3px_rgba(194,125,132,0.25)]',
-                  index === 0 && 'bg-primary-600 shadow-[0_0_0_4px_rgba(194,125,132,0.35)]'
-                )}
-                aria-hidden
-              />
+        {/* Línea central desktop */}
+        <div
+          className="pointer-events-none hidden md:block absolute left-1/2 top-3 bottom-3 w-px -translate-x-1/2 bg-gradient-to-b from-primary-300 via-accent-300 to-primary-400"
+          aria-hidden
+        />
 
-              <Card variant="elevated" padding="lg" className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/40 to-transparent pointer-events-none" aria-hidden />
+        <ul className="space-y-10 md:space-y-14 relative z-[1]">
+          {EXPERIENCE.map((job, index) => {
+            const onLeft = index % 2 === 0;
 
-                <div className="relative mb-6">
-                  <p className="font-mono text-[11px] uppercase tracking-widest text-primary-700 mb-2">
-                    {formatDateRange(job.startDate, job.endDate)} · {calculateDuration(job.startDate, job.endDate)}
-                  </p>
-                  <h3 className="font-display text-[length:var(--text-2xl)] font-bold text-neutral-900">{job.position}</h3>
-                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-neutral-600 text-[length:var(--text-sm)]">
-                    <span className="inline-flex items-center gap-1.5">
-                      <Icon name="Building" size={16} className="text-accent-700 shrink-0" aria-hidden />
-                      {job.company}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <Icon name="MapPin" size={16} className="text-neutral-500 shrink-0" aria-hidden />
-                      {job.location}
-                    </span>
-                  </div>
+            return (
+              <li key={job.id} className="relative">
+                {/* Nodo timeline móvil */}
+                <div
+                  className={clsx(
+                    'md:hidden absolute left-0 top-8 h-3 w-3 rounded-full border-2 border-white bg-primary-500 shadow-[0_0_0_3px_rgba(194,125,132,0.2)]',
+                    index === 0 && 'bg-primary-600 shadow-[0_0_0_4px_rgba(194,125,132,0.3)]'
+                  )}
+                  aria-hidden
+                />
+
+                {/* Nodo sobre la línea central (desktop) */}
+                <div
+                  className={clsx(
+                    'hidden md:block absolute left-1/2 top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-[3px] border-white bg-primary-500 shadow-[0_0_0_4px_rgba(194,125,132,0.22)]',
+                    index === 0 && 'bg-primary-600 shadow-[0_0_0_5px_rgba(194,125,132,0.32)]'
+                  )}
+                  aria-hidden
+                />
+
+                <div
+                  className={clsx(
+                    'pl-10 md:pl-0 md:max-w-[min(100%,calc(50%-2.75rem))]',
+                    onLeft ? 'md:mr-auto md:pr-0' : 'md:ml-auto md:pl-0'
+                  )}
+                >
+                  {jobCard(job)}
                 </div>
-
-                <p className="text-neutral-600 text-[length:var(--text-sm)] leading-relaxed mb-6">{job.description}</p>
-
-                <div className="mb-6">
-                  <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3 flex items-center gap-2">
-                    <Icon name="Trophy" size={16} className="text-primary-600" aria-hidden />
-                    Impacto
-                  </h4>
-                  <ul className="space-y-2.5">
-                    {job.achievements.map((achievement, i) => (
-                      <li key={i} className="flex gap-3 text-[length:var(--text-sm)] text-neutral-700 leading-relaxed">
-                        <Icon name="CheckCircle" size={16} className="text-emerald-600 shrink-0 mt-0.5" aria-hidden />
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {job.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-xs font-mono text-neutral-700"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
       </div>
 
