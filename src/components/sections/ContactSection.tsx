@@ -2,167 +2,133 @@ import React, { useState } from 'react';
 import { Section, Card, Icon, Button } from '../ui';
 import { CONTACT_INFO, PERSONAL_INFO } from '../../constants/portfolio-data';
 
+const inputClass =
+  'w-full px-4 py-3 rounded-xl border border-secondary-700 bg-secondary-900/80 text-secondary-100 placeholder:text-secondary-600 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-colors';
+
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Crear enlace mailto con la información del formulario
     const subject = encodeURIComponent(formData.subject || 'Contacto desde Portfolio');
     const body = encodeURIComponent(
-      `Hola ${PERSONAL_INFO.name},\n\n${formData.message}\n\n` +
-      `Saludos,\n${formData.name}\n${formData.email}`
+      `Hola ${PERSONAL_INFO.name},\n\n${formData.message}\n\nSaludos,\n${formData.name}\n${formData.email}`
     );
-    
     window.location.href = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`;
   };
 
   return (
     <Section
       id="contact"
-      title="Contacto"
-      subtitle="¿Tienes un proyecto en mente? ¡Hablemos!"
+      eyebrow="Contacto"
+      title="Hablemos de tu próximo sistema"
+      subtitle="Respuesta típica en 24 h. Ideal si buscas alguien que piense en integraciones, datos y operación desde el día uno."
+      className="bg-secondary-900/35 border-t border-secondary-800/60"
     >
-      <div className="grid lg:grid-cols-2 gap-16">
-        {/* Contact Information */}
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
         <div className="space-y-8">
-          <div>
-            <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-              Información de Contacto
-            </h3>
-            <div className="space-y-6">
-              {/* Email */}
-              <Card variant="bordered" padding="lg" className="group hover:border-primary-300 transition-colors">
-                <div className="flex items-center">
-                  <div className="p-3 bg-primary-50 rounded-lg mr-4 group-hover:bg-primary-100 transition-colors">
-                    <Icon name="Mail" size={24} className="text-primary-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-900">Email</h4>
-                    <a
-                      href={`mailto:${CONTACT_INFO.email}`}
-                      className="text-primary-600 hover:text-primary-700 transition-colors"
-                    >
-                      {CONTACT_INFO.email}
-                    </a>
-                  </div>
+          <div className="space-y-4">
+            <Card variant="bordered" padding="lg" className="group">
+              <div className="flex items-center gap-4">
+                <div className="rounded-xl border border-primary-500/25 bg-primary-500/10 p-3">
+                  <Icon name="Mail" size={22} className="text-primary-300" aria-hidden />
                 </div>
-              </Card>
+                <div>
+                  <h4 className="font-semibold text-secondary-100">Email</h4>
+                  <a href={`mailto:${CONTACT_INFO.email}`} className="text-sm text-primary-300 hover:text-primary-200 break-all">
+                    {CONTACT_INFO.email}
+                  </a>
+                </div>
+              </div>
+            </Card>
 
-              {/* Phone */}
-              <Card variant="bordered" padding="lg" className="group hover:border-primary-300 transition-colors">
-                <div className="flex items-center">
-                  <div className="p-3 bg-primary-50 rounded-lg mr-4 group-hover:bg-primary-100 transition-colors">
-                    <Icon name="Phone" size={24} className="text-primary-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-900">Teléfono</h4>
-                    <a
-                      href={`tel:+51${CONTACT_INFO.phone}`}
-                      className="text-primary-600 hover:text-primary-700 transition-colors"
-                    >
-                      +51 {CONTACT_INFO.phone}
-                    </a>
-                  </div>
+            <Card variant="bordered" padding="lg">
+              <div className="flex items-center gap-4">
+                <div className="rounded-xl border border-primary-500/25 bg-primary-500/10 p-3">
+                  <Icon name="Phone" size={22} className="text-primary-300" aria-hidden />
                 </div>
-              </Card>
+                <div>
+                  <h4 className="font-semibold text-secondary-100">Teléfono</h4>
+                  <a href={`tel:+51${CONTACT_INFO.phone}`} className="text-sm text-primary-300 hover:text-primary-200">
+                    +51 {CONTACT_INFO.phone}
+                  </a>
+                </div>
+              </div>
+            </Card>
 
-              {/* Location */}
-              <Card variant="bordered" padding="lg" className="group hover:border-primary-300 transition-colors">
-                <div className="flex items-center">
-                  <div className="p-3 bg-primary-50 rounded-lg mr-4 group-hover:bg-primary-100 transition-colors">
-                    <Icon name="MapPin" size={24} className="text-primary-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-900">Ubicación</h4>
-                    <span className="text-neutral-600">{CONTACT_INFO.location}</span>
-                  </div>
+            <Card variant="bordered" padding="lg">
+              <div className="flex items-center gap-4">
+                <div className="rounded-xl border border-primary-500/25 bg-primary-500/10 p-3">
+                  <Icon name="MapPin" size={22} className="text-primary-300" aria-hidden />
                 </div>
-              </Card>
-            </div>
+                <div>
+                  <h4 className="font-semibold text-secondary-100">Ubicación</h4>
+                  <p className="text-sm text-secondary-400">{CONTACT_INFO.location}</p>
+                </div>
+              </div>
+            </Card>
           </div>
 
-          {/* Social Links */}
           <div>
-            <h3 className="text-xl font-bold text-neutral-900 mb-6">
-              Enlaces Sociales
-            </h3>
-            <div className="flex space-x-4">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-secondary-500 mb-3">Redes</h3>
+            <div className="flex flex-wrap gap-2">
               {CONTACT_INFO.socialLinks.map((social) => (
                 <a
                   key={social.id}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-primary-50 rounded-xl hover:bg-primary-100 transition-all duration-300 hover:scale-110 group"
+                  className="rounded-xl border border-secondary-700 bg-secondary-900/50 px-4 py-2.5 text-secondary-300 hover:border-primary-500/35 hover:text-primary-200 text-sm font-medium transition-colors inline-flex items-center gap-2"
                 >
-                  <Icon 
-                    name={social.icon} 
-                    size={24} 
-                    className="text-primary-600 group-hover:text-primary-700 transition-colors" 
-                  />
+                  <Icon name={social.icon} size={18} aria-hidden />
+                  {social.platform}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* CV Download */}
-          <div>
-            <h3 className="text-xl font-bold text-neutral-900 mb-6">
-              Currículum Vitae
-            </h3>
-            <Button
-              variant="gradient"
-              size="lg"
-              href="/Kenyi_Ivan_Vega_Aliaga_CV_2025_6_25.pdf"
-              external
-              className="w-full"
-            >
-              <Icon name="Download" size={20} className="mr-2" />
-              Descargar CV Completo
-            </Button>
-            <p className="text-xs text-neutral-500 mt-2 text-center">
-              Documento PDF con información completa
-            </p>
-          </div>
+          <Button variant="gradient" size="lg" href="/Kenyi_Ivan_Vega_Aliaga_CV_2025_6_25.pdf" external className="w-full justify-center">
+            <Icon name="Download" size={20} className="mr-2" aria-hidden />
+            Descargar CV (PDF)
+          </Button>
 
-          {/* Availability */}
           <Card variant="elevated" padding="lg">
-            <div className="flex items-center">
-              <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse" />
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400" />
+              </span>
               <div>
-                <h4 className="font-semibold text-neutral-900">Disponible para Proyectos</h4>
-                <p className="text-neutral-600 text-sm">
-                  Abierto a nuevas oportunidades y colaboraciones
-                </p>
+                <h4 className="font-semibold text-secondary-100">Disponible para proyectos</h4>
+                <p className="text-secondary-500 text-sm">Colaboración remota o presencial en Lima.</p>
               </div>
             </div>
           </Card>
         </div>
 
-        {/* Contact Form */}
         <div>
-          <Card variant="elevated" padding="xl">
-            <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-              Envíame un Mensaje
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <Card variant="gradient-border" padding="xl">
+            <h3 className="font-display text-xl font-bold text-secondary-100 mb-2">Mensaje directo</h3>
+            <p className="text-secondary-500 text-sm mb-6">
+              El envío abre tu cliente de correo con el texto prellenado; no almaceno datos en servidor.
+            </p>
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
-                  Nombre Completo
+                <label htmlFor="name" className="block text-sm font-medium text-secondary-300 mb-2">
+                  Nombre
                 </label>
                 <input
                   type="text"
@@ -171,13 +137,13 @@ const ContactSection: React.FC = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                  placeholder="Tu nombre completo"
+                  className={inputClass}
+                  placeholder="Tu nombre"
+                  autoComplete="name"
                 />
               </div>
-
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-secondary-300 mb-2">
                   Email
                 </label>
                 <input
@@ -187,13 +153,13 @@ const ContactSection: React.FC = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                  className={inputClass}
                   placeholder="tu@email.com"
+                  autoComplete="email"
                 />
               </div>
-
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="subject" className="block text-sm font-medium text-secondary-300 mb-2">
                   Asunto
                 </label>
                 <input
@@ -203,13 +169,12 @@ const ContactSection: React.FC = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                  placeholder="¿De qué quieres hablar?"
+                  className={inputClass}
+                  placeholder="Integración, MVP, consultoría…"
                 />
               </div>
-
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-secondary-300 mb-2">
                   Mensaje
                 </label>
                 <textarea
@@ -219,28 +184,19 @@ const ContactSection: React.FC = () => {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
-                  placeholder="Cuéntame sobre tu proyecto o idea..."
+                  className={`${inputClass} resize-none`}
+                  placeholder="Contexto, plazos y stack actual si aplica…"
                 />
               </div>
-
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                className="w-full"
-              >
-                <Icon name="Send" size={20} className="mr-2" />
-                Enviar Mensaje
+              <Button type="submit" variant="primary" size="lg" className="w-full justify-center">
+                <Icon name="Send" size={20} className="mr-2" aria-hidden />
+                Abrir correo
               </Button>
             </form>
-
-            <div className="mt-6 p-4 bg-neutral-50 rounded-lg">
-              <p className="text-sm text-neutral-600 text-center">
-                <Icon name="Clock" size={16} className="inline mr-1" />
-                Respondo típicamente en 24 horas
-              </p>
-            </div>
+            <p className="mt-4 text-xs text-secondary-600 text-center flex items-center justify-center gap-1">
+              <Icon name="Clock" size={14} aria-hidden />
+              Respondo en ~24 horas hábiles
+            </p>
           </Card>
         </div>
       </div>
@@ -248,4 +204,4 @@ const ContactSection: React.FC = () => {
   );
 };
 
-export default ContactSection; 
+export default ContactSection;

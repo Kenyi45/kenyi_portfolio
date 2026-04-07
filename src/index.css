@@ -1,229 +1,149 @@
 /* ============================================================================ */
-/* PORTFOLIO GLOBAL STYLES */
+/* PORTFOLIO — tema oscuro técnico / arquitectura */
 /* ============================================================================ */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family:Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap');
 
-/* Base Styles */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-  
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: theme('fontFamily.sans');
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     line-height: 1.6;
-    color: theme('colors.neutral.900');
-    background-color: theme('colors.white');
+    color: theme('colors.secondary.300');
+    background-color: theme('colors.secondary.950');
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Heading Styles */
   h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.display');
     font-weight: 700;
-    line-height: 1.2;
-    color: theme('colors.neutral.900');
+    line-height: 1.15;
+    color: theme('colors.secondary.50');
   }
 
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    letter-spacing: -0.03em;
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    letter-spacing: -0.02em;
   }
 
-  /* Smooth transitions for all interactive elements */
   a, button {
-    transition: all 0.2s ease-in-out;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
-  /* Focus styles */
-  *:focus {
-    outline: 2px solid theme('colors.primary.500');
-    outline-offset: 2px;
+  *:focus-visible {
+    outline: 2px solid theme('colors.primary.400');
+    outline-offset: 3px;
   }
 
-  /* Selection styles */
   ::selection {
-    background-color: theme('colors.primary.100');
-    color: theme('colors.primary.900');
+    background-color: theme('colors.primary.900');
+    color: theme('colors.primary.100');
   }
 }
 
-/* Component Styles */
 @layer components {
-  /* Custom Scrollbar */
+  .page-grid-bg {
+    background-size: 64px 64px;
+    background-image: theme('backgroundImage.grid-slate');
+  }
+
+  .noise-overlay {
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, theme('colors.primary.300') 0%, theme('colors.accent.400') 55%, theme('colors.primary.400') 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient-subtle {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(theme('colors.secondary.950'), theme('colors.secondary.950')) padding-box,
+      linear-gradient(135deg, rgba(34, 211, 238, 0.35), rgba(139, 92, 246, 0.25)) border-box;
+  }
+
+  .glass-header {
+    @apply backdrop-blur-xl bg-secondary-950/75 border-b border-white/[0.06];
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-400 text-secondary-950 font-semibold hover:shadow-glow-cyan;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: theme('colors.neutral.100');
+    background: theme('colors.secondary.900');
   }
 
   ::-webkit-scrollbar-thumb {
-    background: theme('colors.primary.400');
+    background: theme('colors.primary.800');
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: theme('colors.primary.600');
   }
-
-  /* Animation Utilities */
-  .animate-delay-100 {
-    animation-delay: 100ms;
-  }
-
-  .animate-delay-200 {
-    animation-delay: 200ms;
-  }
-
-  .animate-delay-300 {
-    animation-delay: 300ms;
-  }
-
-  .animate-delay-400 {
-    animation-delay: 400ms;
-  }
-
-  .animate-delay-500 {
-    animation-delay: 500ms;
-  }
-
-  /* Text Gradient */
-  .text-gradient {
-    background: linear-gradient(135deg, theme('colors.primary.600'), theme('colors.accent.600'));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Glass Morphism */
-  .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  /* Custom Button Styles */
-  .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200;
-  }
-
-  .btn-secondary {
-    @apply bg-secondary-100 hover:bg-secondary-200 text-secondary-900 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200;
-  }
-
-  /* Form Styles */
-  .form-input {
-    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors;
-  }
-
-  .form-textarea {
-    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none;
-  }
-
-  /* Card Styles */
-  .card-hover {
-    @apply hover:scale-105 hover:shadow-large transition-all duration-300;
-  }
-
-  /* Section Spacing */
-  .section-padding {
-    @apply py-20 lg:py-28;
-  }
 }
 
-/* Utility Classes */
 @layer utilities {
-  /* Custom Animations */
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
     }
   }
 
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.65s ease-out forwards;
   }
 
-  .animate-fade-in-down {
-    animation: fadeInDown 0.6s ease-out forwards;
-  }
-
-  .animate-fade-in-left {
-    animation: fadeInLeft 0.6s ease-out forwards;
-  }
-
-  .animate-fade-in-right {
-    animation: fadeInRight 0.6s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
-  }
-
-  /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -231,10 +151,5 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
-  }
-
-  /* Custom Container */
-  .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }

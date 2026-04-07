@@ -1,5 +1,5 @@
 // ============================================================================
-// SKILLS SECTION - Professional Skills
+// SKILLS SECTION
 // ============================================================================
 
 import React from 'react';
@@ -7,20 +7,34 @@ import { Section, Card, Icon } from '../ui';
 import { SKILLS } from '../../constants/portfolio-data';
 import type { SkillCategory, Skill } from '../../types';
 
-// Importar iconos específicos de react-icons
 import {
-  SiJavascript, SiTypescript, SiPython, SiPhp, SiDotnet, SiHtml5, SiCss3,
-  SiReact, SiAngular, SiNextdotjs, SiLaravel, SiFastapi, SiNestjs, SiNodedotjs,
-  SiMysql, SiPostgresql, SiMongodb, SiGooglecloud,
-  SiAwslambda, SiAmazonapigateway, SiGit, SiJira, SiTrello
+  SiJavascript,
+  SiTypescript,
+  SiPython,
+  SiPhp,
+  SiDotnet,
+  SiHtml5,
+  SiCss3,
+  SiReact,
+  SiAngular,
+  SiNextdotjs,
+  SiLaravel,
+  SiFastapi,
+  SiNestjs,
+  SiNodedotjs,
+  SiMysql,
+  SiPostgresql,
+  SiMongodb,
+  SiGooglecloud,
+  SiAwslambda,
+  SiAmazonapigateway,
+  SiGit,
+  SiJira,
+  SiTrello,
 } from 'react-icons/si';
-import { DiMsqlServer } from "react-icons/di";
-
-// Principio Single Responsibility: Solo maneja la visualización de habilidades
-// Principio Open/Closed: Extensible para nuevas categorías de skills
+import { DiMsqlServer } from 'react-icons/di';
 
 const SkillsSection: React.FC = () => {
-  // Agrupar skills por categoría - creamos arrays mutables
   const skillsByCategory = SKILLS.reduce((acc, skill) => {
     if (!acc[skill.category]) {
       acc[skill.category] = [];
@@ -29,97 +43,102 @@ const SkillsSection: React.FC = () => {
     return acc;
   }, {} as Record<SkillCategory, Skill[]>);
 
-  // Configuración de categorías con iconos y títulos
   const categoryConfig = {
-    languages: { title: 'Lenguajes de Programación', icon: 'Code2', color: 'primary' },
-    frontend: { title: 'Frontend', icon: 'Palette', color: 'accent' },
-    backend: { title: 'Backend', icon: 'Server', color: 'secondary' },
-    frameworks: { title: 'Frameworks', icon: 'Layers', color: 'primary' },
-    database: { title: 'Bases de Datos', icon: 'Database', color: 'accent' },
-    cloud: { title: 'Cloud & DevOps', icon: 'Cloud', color: 'secondary' },
-    tools: { title: 'Herramientas', icon: 'Settings', color: 'primary' }
+    languages: { title: 'Lenguajes', icon: 'Code2', tag: 'core' },
+    frontend: { title: 'Frontend', icon: 'Palette', tag: 'ui' },
+    backend: { title: 'Backend', icon: 'Server', tag: 'services' },
+    frameworks: { title: 'Frameworks', icon: 'Layers', tag: 'stack' },
+    database: { title: 'Datos', icon: 'Database', tag: 'storage' },
+    cloud: { title: 'Nube & DevOps', icon: 'Cloud', tag: 'ops' },
+    tools: { title: 'Herramientas', icon: 'Settings', tag: 'delivery' },
   };
 
-  // Mapeo de iconos de react-icons
+  // react-icons / React 18: IconType puede exponer ReactNode; evitamos fricción de tipos aquí
   const iconMap: Record<string, any> = {
-    SiJavascript, SiTypescript, SiPython, SiPhp, SiDotnet, SiHtml5, SiCss3,
-    SiReact, SiAngular, SiNextdotjs, SiLaravel, SiFastapi, SiNestjs, SiNodedotjs,
-    SiMysql, SiPostgresql, SiMongodb, SiGooglecloud,
-    SiAwslambda, SiAmazonapigateway, DiMsqlServer, SiGit, SiJira, SiTrello
+    SiJavascript,
+    SiTypescript,
+    SiPython,
+    SiPhp,
+    SiDotnet,
+    SiHtml5,
+    SiCss3,
+    SiReact,
+    SiAngular,
+    SiNextdotjs,
+    SiLaravel,
+    SiFastapi,
+    SiNestjs,
+    SiNodedotjs,
+    SiMysql,
+    SiPostgresql,
+    SiMongodb,
+    SiGooglecloud,
+    SiAwslambda,
+    SiAmazonapigateway,
+    DiMsqlServer,
+    SiGit,
+    SiJira,
+    SiTrello,
   };
 
-  // Obtener color por nivel de habilidad
-  const getLevelColor = (level: string) => {
-    const colors = {
-      beginner: 'text-neutral-400',
-      intermediate: 'text-accent-500',
-      advanced: 'text-primary-600',
-      expert: 'text-primary-700'
+  const levelBadge = (level: string) => {
+    const map = {
+      expert: 'bg-primary-500/15 text-primary-300 border-primary-500/30',
+      advanced: 'bg-accent-500/10 text-accent-300 border-accent-500/25',
+      intermediate: 'bg-secondary-700/80 text-secondary-300 border-secondary-600',
+      beginner: 'bg-secondary-800 text-secondary-400 border-secondary-700',
     };
-    return colors[level as keyof typeof colors] || 'text-neutral-400';
+    return map[level as keyof typeof map] ?? map.beginner;
   };
 
   return (
     <Section
       id="skills"
-      title="Habilidades Técnicas"
-      subtitle="Tecnologías y herramientas con las que trabajo día a día"
+      eyebrow="Stack"
+      title="Herramientas y profundidad"
+      subtitle="Clasificado por dominio. Los niveles reflejan uso profesional reciente, no autocalificación genérica."
     >
-      <div className="space-y-12">
+      <div className="space-y-14">
         {Object.entries(skillsByCategory).map(([category, skills]) => {
           const config = categoryConfig[category as SkillCategory];
           if (!config) return null;
 
           return (
-            <div key={category} className="animate-fade-in">
-              {/* Category Header */}
-              <div className="flex items-center mb-8">
-                <div className="p-3 bg-primary-50 rounded-lg mr-4">
-                  <Icon name={config.icon} size={24} className="text-primary-600" />
+            <div key={category}>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <span className="inline-flex items-center justify-center rounded-xl border border-secondary-700 bg-secondary-900/60 p-2.5">
+                  <Icon name={config.icon} size={20} className="text-primary-400" aria-hidden />
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-bold text-secondary-100">{config.title}</h3>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-secondary-500">{config.tag}</p>
                 </div>
-                <h3 className="text-2xl font-bold text-neutral-900">
-                  {config.title}
-                </h3>
               </div>
 
-              {/* Skills Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
                 {skills.map((skill) => {
                   const TechIcon = skill.icon ? iconMap[skill.icon] : null;
-                  
                   return (
                     <Card
                       key={skill.id}
                       variant="bordered"
-                      padding="lg"
-                      className="group hover:scale-110 transition-all duration-300 hover:border-primary-300 hover:shadow-lg text-center"
+                      padding="md"
+                      className="group text-center hover:border-primary-500/35"
                     >
-                      <div className="flex flex-col items-center space-y-3">
-                        {/* Icono de la tecnología */}
-                        <div className={`transition-all duration-300 ${getLevelColor(skill.level)} group-hover:scale-125`}>
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="text-primary-200 group-hover:scale-105 transition-transform">
                           {TechIcon ? (
-                            <TechIcon size={48} />
+                            <TechIcon size={36} />
                           ) : (
-                            <Icon name="Code2" size={48} className="text-neutral-400" />
+                            <Icon name="Code2" size={36} className="text-secondary-600" aria-hidden />
                           )}
                         </div>
-                        
-                        {/* Nombre de la tecnología */}
-                        <div>
-                          <h4 className="font-semibold text-neutral-900 text-sm mb-1">
-                            {skill.name}
-                          </h4>
-                          
-                          {/* Nivel de experiencia */}
-                          <span className={`text-xs font-medium capitalize px-2 py-1 rounded-full ${
-                            skill.level === 'expert' ? 'bg-primary-100 text-primary-700' :
-                            skill.level === 'advanced' ? 'bg-accent-100 text-accent-700' :
-                            skill.level === 'intermediate' ? 'bg-blue-100 text-blue-700' :
-                            'bg-neutral-100 text-neutral-600'
-                          }`}>
-                            {skill.level}
-                          </span>
-                        </div>
+                        <h4 className="font-medium text-secondary-100 text-sm leading-tight">{skill.name}</h4>
+                        <span
+                          className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-md border ${levelBadge(skill.level)}`}
+                        >
+                          {skill.level}
+                        </span>
                       </div>
                     </Card>
                   );
@@ -130,35 +149,24 @@ const SkillsSection: React.FC = () => {
         })}
       </div>
 
-      {/* Skills Summary */}
-      <div className="mt-20 text-center">
-        <Card variant="elevated" padding="xl" className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-            Filosofía de Desarrollo
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group">
-              <Icon name="Target" size={40} className="text-primary-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <h4 className="font-semibold text-neutral-900 mb-2">Clean Code</h4>
-              <p className="text-neutral-600 text-sm">
-                Código limpio, mantenible y siguiendo principios SOLID
-              </p>
+      <div className="mt-16">
+        <Card variant="gradient" padding="xl">
+          <h3 className="font-display text-xl font-bold text-secondary-100 mb-8 text-center">Principios de ingeniero</h3>
+          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+              <Icon name="Target" size={32} className="text-primary-400 mx-auto md:mx-0 mb-3" aria-hidden />
+              <h4 className="font-semibold text-secondary-100 mb-2">Límites claros</h4>
+              <p className="text-secondary-500 text-sm leading-relaxed">Contratos de API y modelos de dominio explícitos.</p>
             </div>
-            
-            <div className="group">
-              <Icon name="Zap" size={40} className="text-primary-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <h4 className="font-semibold text-neutral-900 mb-2">Performance</h4>
-              <p className="text-neutral-600 text-sm">
-                Optimización constante para máxima eficiencia
-              </p>
+            <div>
+              <Icon name="Zap" size={32} className="text-primary-400 mx-auto md:mx-0 mb-3" aria-hidden />
+              <h4 className="font-semibold text-secondary-100 mb-2">Rendimiento</h4>
+              <p className="text-secondary-500 text-sm leading-relaxed">Menos trabajo inútil en request; observabilidad cuando aporta.</p>
             </div>
-            
-            <div className="group">
-              <Icon name="Users" size={40} className="text-primary-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <h4 className="font-semibold text-neutral-900 mb-2">UX Focus</h4>
-              <p className="text-neutral-600 text-sm">
-                Centrado en la experiencia del usuario final
-              </p>
+            <div>
+              <Icon name="Users" size={32} className="text-primary-400 mx-auto md:mx-0 mb-3" aria-hidden />
+              <h4 className="font-semibold text-secondary-100 mb-2">Producto</h4>
+              <p className="text-secondary-500 text-sm leading-relaxed">Handoffs con negocio y operaciones sin sorpresas en producción.</p>
             </div>
           </div>
         </Card>
@@ -167,4 +175,4 @@ const SkillsSection: React.FC = () => {
   );
 };
 
-export default SkillsSection; 
+export default SkillsSection;

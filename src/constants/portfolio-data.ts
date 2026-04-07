@@ -19,12 +19,12 @@ import type {
 
 export const PERSONAL_INFO: PersonalInfo = {
   name: 'Kenyi Ivan Vega Aliaga',
-  title: 'Desarrollador Full Stack',
+  title: 'Full Stack Semisenior · Ingeniería de arquitectura de software',
   location: 'Lima, Perú',
   phone: '954201172',
   email: 'kenyiva45@gmail.com',
   linkedin: 'linkedin.com/in/ivan-vega-aliaga',
-  summary: 'Desarrollador fullstack con más de 4 años de experiencia en desarrollo web, móvil y sistemas ERP. He liderado integraciones de pasarelas de pago, desarrollado soluciones backend y frontend, y gestionado infraestructura TI. Apasionado por la creación de productos eficientes, escalables y centrados en el usuario.'
+  summary: 'Ingeniero de software con foco en arquitectura y entrega full stack: diseño de integraciones, APIs, ERP y workloads serverless. Más de 4 años construyendo sistemas escalables en PHP/Laravel, Node/Nest, Python y React/TypeScript, con bases SQL y despliegues en GCP y AWS. Me interesan los límites claros entre dominios, la observabilidad y el rendimiento percibido del producto.'
 } as const;
 
 // ============================================================================

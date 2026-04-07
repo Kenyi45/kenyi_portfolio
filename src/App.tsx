@@ -14,40 +14,21 @@ import {
   ContactSection
 } from './components/sections';
 
-// Principio Single Responsibility: App solo maneja la estructura principal
-// Principio Open/Closed: Extensible para nuevas secciones sin modificar el core
-
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation Header */}
+    <div className="min-h-screen bg-secondary-950 text-secondary-300 antialiased selection:bg-primary-900 selection:text-primary-100">
       <Header />
-      
-      {/* Main Content */}
+
       <main className="relative">
-        {/* Hero Section */}
         <HeroSection />
-        
-        {/* About Section */}
         <AboutSection />
-        
-        {/* Skills Section */}
         <SkillsSection />
-        
-        {/* Experience Section */}
         <ExperienceSection />
-        
-        {/* Projects Section */}
         <ProjectsSection />
-        
-        {/* Education Section */}
         <EducationSection />
-        
-        {/* Contact Section */}
         <ContactSection />
       </main>
-      
-      {/* Footer */}
+
       <Footer />
     </div>
   );

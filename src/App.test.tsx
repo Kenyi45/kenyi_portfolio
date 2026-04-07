@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renderiza el portafolio principal', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByRole('navigation', { name: /principal/i })).toBeInTheDocument();
+  expect(screen.getAllByText(/Kenyi Ivan Vega Aliaga/i).length).toBeGreaterThan(0);
 });

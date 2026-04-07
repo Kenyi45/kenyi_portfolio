@@ -6,33 +6,36 @@ import React from 'react';
 import { clsx } from 'clsx';
 import type { SectionProps } from '../../types';
 
-// Principio Single Responsibility: Solo maneja la estructura de secciones
-// Principio Open/Closed: Extensible para diferentes tipos de secciones
-
 const Section: React.FC<SectionProps> = ({
   children,
   className,
   id,
   title,
   subtitle,
+  eyebrow,
   ...props
 }) => {
-  const baseClasses = 'py-20 lg:py-28';
-  
+  const baseClasses = 'section-padding relative';
+
   const computedClasses = clsx(baseClasses, className);
 
   return (
     <section id={id} className={computedClasses} {...props}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {(title || subtitle) && (
-          <div className="text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {(title || subtitle || eyebrow) && (
+          <div className="mb-14 md:mb-16 max-w-3xl">
+            {eyebrow && (
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary-400/90 mb-3">
+                {eyebrow}
+              </p>
+            )}
             {title && (
-              <h2 className="text-display-md font-bold text-neutral-900 mb-4 animate-fade-in">
+              <h2 className="font-display text-display-md font-bold text-secondary-50 mb-4">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="text-lg text-neutral-600 max-w-3xl mx-auto animate-slide-up">
+              <p className="text-lg text-secondary-400 leading-relaxed">
                 {subtitle}
               </p>
             )}
@@ -44,4 +47,4 @@ const Section: React.FC<SectionProps> = ({
   );
 };
 
-export default Section; 
+export default Section;

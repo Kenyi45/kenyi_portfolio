@@ -80,6 +80,8 @@ export interface SectionProps extends BaseComponentProps {
   readonly id?: string;
   readonly title?: string;
   readonly subtitle?: string;
+  /** Etiqueta pequeña monoespaciada sobre el título (estilo “case study”) */
+  readonly eyebrow?: string;
 }
 
 export interface CardProps extends BaseComponentProps {
