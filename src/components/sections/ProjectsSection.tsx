@@ -38,7 +38,7 @@ const ProjectsSection: React.FC = () => {
       subtitle="Selección de entregas con impacto: optimización logística, ERP, pagos y herramientas web."
       className="bg-secondary-50/50"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 @lg:gap-5 auto-rows-fr">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 @lg:gap-5 md:items-stretch [grid-auto-rows:minmax(0,auto)]">
         {PROJECTS.map((project, index) => {
           const featured = index === 0;
 
@@ -48,7 +48,7 @@ const ProjectsSection: React.FC = () => {
               variant={featured ? 'gradient-border' : 'elevated'}
               padding={featured ? 'xl' : 'lg'}
               className={clsx(
-                'flex flex-col h-full min-h-[180px] transition-[transform,box-shadow] duration-smooth ease-out-expo hover:-translate-y-0.5',
+                'flex flex-col min-h-[180px] md:min-h-0 transition-[transform,box-shadow] duration-smooth ease-out-expo hover:-translate-y-0.5 md:h-full',
                 featured && 'md:col-span-2 md:row-span-2'
               )}
             >
