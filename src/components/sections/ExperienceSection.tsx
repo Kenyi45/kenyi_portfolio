@@ -1,5 +1,5 @@
 // ============================================================================
-// EXPERIENCE SECTION
+// EXPERIENCE
 // ============================================================================
 
 import React from 'react';
@@ -34,11 +34,11 @@ const ExperienceSection: React.FC = () => {
       eyebrow="Trayectoria"
       title="Experiencia profesional"
       subtitle="Roles con responsabilidad en integración, producto interno y confiabilidad operativa."
-      className="bg-secondary-900/35 border-y border-secondary-800/60"
+      className="bg-white/70 border-y border-neutral-200/80"
     >
       <div className="max-w-3xl mx-auto relative pl-8 sm:pl-10">
         <div
-          className="absolute left-[7px] sm:left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-primary-500/50 via-accent-500/40 to-primary-600/50"
+          className="absolute left-[7px] sm:left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-primary-300 via-accent-300 to-primary-400"
           aria-hidden
         />
 
@@ -47,45 +47,43 @@ const ExperienceSection: React.FC = () => {
             <li key={job.id} className="relative">
               <div
                 className={clsx(
-                  'absolute left-[-1.55rem] sm:left-[-1.85rem] top-6 h-3 w-3 rounded-full border-2 border-secondary-950 bg-primary-400 shadow-[0_0_0_4px_rgba(34,211,238,0.15)]',
-                  index === 0 && 'bg-primary-300 shadow-[0_0_0_4px_rgba(34,211,238,0.28)]'
+                  'absolute left-[-1.55rem] sm:left-[-1.85rem] top-6 h-3 w-3 rounded-full border-2 border-white bg-primary-500 shadow-[0_0_0_3px_rgba(194,125,132,0.25)]',
+                  index === 0 && 'bg-primary-600 shadow-[0_0_0_4px_rgba(194,125,132,0.35)]'
                 )}
                 aria-hidden
               />
 
               <Card variant="elevated" padding="lg" className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/[0.03] to-transparent pointer-events-none" aria-hidden />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/40 to-transparent pointer-events-none" aria-hidden />
 
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6 relative">
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-widest text-primary-400/90 mb-2">
-                      {formatDateRange(job.startDate, job.endDate)} · {calculateDuration(job.startDate, job.endDate)}
-                    </p>
-                    <h3 className="font-display text-xl sm:text-2xl font-bold text-secondary-50">{job.position}</h3>
-                    <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-secondary-400 text-sm">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Icon name="Building" size={16} className="text-accent-400 shrink-0" aria-hidden />
-                        {job.company}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5">
-                        <Icon name="MapPin" size={16} className="text-secondary-500 shrink-0" aria-hidden />
-                        {job.location}
-                      </span>
-                    </div>
+                <div className="relative mb-6">
+                  <p className="font-mono text-[11px] uppercase tracking-widest text-primary-700 mb-2">
+                    {formatDateRange(job.startDate, job.endDate)} · {calculateDuration(job.startDate, job.endDate)}
+                  </p>
+                  <h3 className="font-display text-[length:var(--text-2xl)] font-bold text-neutral-900">{job.position}</h3>
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-neutral-600 text-[length:var(--text-sm)]">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Icon name="Building" size={16} className="text-accent-700 shrink-0" aria-hidden />
+                      {job.company}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Icon name="MapPin" size={16} className="text-neutral-500 shrink-0" aria-hidden />
+                      {job.location}
+                    </span>
                   </div>
                 </div>
 
-                <p className="text-secondary-400 text-sm leading-relaxed mb-6">{job.description}</p>
+                <p className="text-neutral-600 text-[length:var(--text-sm)] leading-relaxed mb-6">{job.description}</p>
 
                 <div className="mb-6">
-                  <h4 className="font-mono text-xs uppercase tracking-wider text-secondary-500 mb-3 flex items-center gap-2">
-                    <Icon name="Trophy" size={16} className="text-primary-400" aria-hidden />
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3 flex items-center gap-2">
+                    <Icon name="Trophy" size={16} className="text-primary-600" aria-hidden />
                     Impacto
                   </h4>
                   <ul className="space-y-2.5">
                     {job.achievements.map((achievement, i) => (
-                      <li key={i} className="flex gap-3 text-sm text-secondary-300 leading-relaxed">
-                        <Icon name="CheckCircle" size={16} className="text-emerald-400/90 shrink-0 mt-0.5" aria-hidden />
+                      <li key={i} className="flex gap-3 text-[length:var(--text-sm)] text-neutral-700 leading-relaxed">
+                        <Icon name="CheckCircle" size={16} className="text-emerald-600 shrink-0 mt-0.5" aria-hidden />
                         <span>{achievement}</span>
                       </li>
                     ))}
@@ -93,12 +91,12 @@ const ExperienceSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="font-mono text-xs uppercase tracking-wider text-secondary-500 mb-3">Stack</h4>
+                  <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Stack</h4>
                   <div className="flex flex-wrap gap-2">
                     {job.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-lg border border-secondary-700 bg-secondary-900/80 text-xs font-mono text-secondary-300"
+                        className="px-2.5 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-xs font-mono text-neutral-700"
                       >
                         {tech}
                       </span>
@@ -113,7 +111,7 @@ const ExperienceSection: React.FC = () => {
 
       <div className="mt-16">
         <Card variant="bordered" padding="xl">
-          <h3 className="font-display text-lg font-bold text-secondary-100 mb-8 text-center">En números</h3>
+          <h3 className="font-display text-[length:var(--text-lg)] font-bold text-neutral-900 mb-8 text-center">En números</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { icon: 'Calendar' as const, value: '+4', label: 'Años' },
@@ -122,9 +120,9 @@ const ExperienceSection: React.FC = () => {
               { icon: 'Shield' as const, value: '99.9%', label: 'SLA objetivo' },
             ].map((item) => (
               <div key={item.label}>
-                <Icon name={item.icon} size={28} className="text-primary-400 mx-auto mb-3" aria-hidden />
-                <div className="font-display text-2xl font-bold text-secondary-100">{item.value}</div>
-                <div className="text-secondary-500 text-xs font-mono uppercase tracking-wider mt-1">{item.label}</div>
+                <Icon name={item.icon} size={28} className="text-primary-600 mx-auto mb-3" aria-hidden />
+                <div className="font-display text-[length:var(--text-2xl)] font-bold text-neutral-900">{item.value}</div>
+                <div className="text-neutral-500 text-xs font-mono uppercase tracking-wider mt-1">{item.label}</div>
               </div>
             ))}
           </div>

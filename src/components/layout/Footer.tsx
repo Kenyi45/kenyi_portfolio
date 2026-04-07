@@ -11,22 +11,21 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-secondary-800 bg-secondary-950">
-      <div className="pointer-events-none absolute inset-0 page-grid-bg opacity-40" aria-hidden />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+    <footer className="relative border-t border-primary-800/40 bg-primary-950 text-primary-100">
+      <div className="container-prose py-14 md:py-16">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-500/35 bg-secondary-900 font-mono text-sm font-semibold text-primary-300">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-600/50 bg-primary-900 font-mono text-xs font-semibold text-primary-200">
                 {initials}
               </span>
               <div>
-                <p className="font-display font-semibold text-secondary-100">{PERSONAL_INFO.name}</p>
-                <p className="font-mono text-[10px] uppercase tracking-wider text-primary-400/90">Full stack · Arquitectura</p>
+                <p className="font-display font-semibold text-white">{PERSONAL_INFO.name}</p>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-primary-300/90">Full stack · Arquitectura</p>
               </div>
             </div>
-            <p className="text-secondary-400 leading-relaxed text-sm mb-6 max-w-sm">
-              Portafolio enfocado en sistemas integrados, contratos de API y soluciones mantenibles.
+            <p className="text-primary-200/90 leading-relaxed text-sm mb-6 max-w-sm">
+              Sistemas integrados, contratos de API y entregas mantenibles.
             </p>
             <div className="flex gap-2">
               {SOCIAL_LINKS.map((social) => (
@@ -35,7 +34,7 @@ const Footer: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl border border-secondary-700 bg-secondary-900/60 p-2.5 text-secondary-400 hover:border-primary-500/40 hover:text-primary-300 transition-colors"
+                  className="rounded-xl border border-primary-700/60 bg-primary-900/40 p-2.5 text-primary-200 hover:border-primary-500 hover:text-white transition-colors duration-smooth"
                   aria-label={social.platform}
                 >
                   <Icon name={social.icon} size={18} aria-hidden />
@@ -45,7 +44,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-secondary-100 mb-4">Mapa</h4>
+            <h4 className="font-display font-semibold text-white mb-4">Mapa</h4>
             <ul className="space-y-2 text-sm">
               {['about', 'skills', 'experience', 'projects', 'education', 'contact'].map((id) => {
                 const labels: Record<string, string> = {
@@ -58,7 +57,7 @@ const Footer: React.FC = () => {
                 };
                 return (
                   <li key={id}>
-                    <a href={`#${id}`} className="text-secondary-400 hover:text-primary-300 transition-colors">
+                    <a href={`#${id}`} className="text-primary-200/90 hover:text-white transition-colors duration-smooth">
                       {labels[id]}
                     </a>
                   </li>
@@ -68,19 +67,19 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-secondary-100 mb-4">Contacto</h4>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-2 text-secondary-400">
+            <h4 className="font-display font-semibold text-white mb-4">Contacto</h4>
+            <div className="space-y-3 text-sm text-primary-200/90">
+              <div className="flex items-center gap-2">
                 <Icon name="Mail" size={16} className="text-primary-400 shrink-0" aria-hidden />
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-primary-300 transition-colors break-all">
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-white transition-colors break-all">
                   {PERSONAL_INFO.email}
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-secondary-400">
+              <div className="flex items-center gap-2">
                 <Icon name="Phone" size={16} className="text-primary-400 shrink-0" aria-hidden />
                 <span>+51 {PERSONAL_INFO.phone}</span>
               </div>
-              <div className="flex items-center gap-2 text-secondary-400">
+              <div className="flex items-center gap-2">
                 <Icon name="MapPin" size={16} className="text-primary-400 shrink-0" aria-hidden />
                 <span>{PERSONAL_INFO.location}</span>
               </div>
@@ -88,13 +87,13 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-secondary-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-secondary-500">
+        <div className="border-t border-primary-800/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-300/80">
           <p>© {currentYear} {PERSONAL_INFO.name}. Todos los derechos reservados.</p>
           <p className="flex items-center gap-2">
             <span>React</span>
-            <span className="text-secondary-700">·</span>
+            <span className="text-primary-700">·</span>
             <span>TypeScript</span>
-            <span className="text-secondary-700">·</span>
+            <span className="text-primary-700">·</span>
             <span>Tailwind</span>
           </p>
         </div>

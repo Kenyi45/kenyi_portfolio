@@ -1,10 +1,11 @@
 // ============================================================================
-// SECTION COMPONENT - Layout Foundation
+// SECTION — container queries + revelado al scroll (mobile-first)
 // ============================================================================
 
 import React from 'react';
 import { clsx } from 'clsx';
 import type { SectionProps } from '../../types';
+import { useSectionReveal } from '../../hooks/useSectionReveal';
 
 const Section: React.FC<SectionProps> = ({
   children,
@@ -15,29 +16,34 @@ const Section: React.FC<SectionProps> = ({
   eyebrow,
   ...props
 }) => {
+  const { ref, visible } = useSectionReveal<HTMLElement>();
   const baseClasses = 'section-padding relative';
 
-  const computedClasses = clsx(baseClasses, className);
-
   return (
-    <section id={id} className={computedClasses} {...props}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      ref={ref}
+      id={id}
+      className={clsx(baseClasses, '[container-type:inline-size]', className)}
+      {...props}
+    >
+      <div className="container-prose relative z-10 @container">
         {(title || subtitle || eyebrow) && (
-          <div className="mb-14 md:mb-16 max-w-3xl">
+          <div
+            className={clsx(
+              'reveal-head mb-12 max-w-3xl @md:mb-14',
+              visible && 'is-visible'
+            )}
+          >
             {eyebrow && (
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary-400/90 mb-3">
+              <p className="font-mono text-[length:var(--text-xs)] uppercase tracking-[0.18em] text-primary-600 mb-3">
                 {eyebrow}
               </p>
             )}
             {title && (
-              <h2 className="font-display text-display-md font-bold text-secondary-50 mb-4">
-                {title}
-              </h2>
+              <h2 className="font-display text-fluid-h2 font-bold text-neutral-900 mb-4">{title}</h2>
             )}
             {subtitle && (
-              <p className="text-lg text-secondary-400 leading-relaxed">
-                {subtitle}
-              </p>
+              <p className="text-fluid-lead text-neutral-600 max-w-2xl">{subtitle}</p>
             )}
           </div>
         )}

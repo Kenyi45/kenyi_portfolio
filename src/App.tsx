@@ -1,5 +1,5 @@
 // ============================================================================
-// MAIN APP COMPONENT - Portfolio Application
+// APP
 // ============================================================================
 
 import React from 'react';
@@ -11,12 +11,12 @@ import {
   ExperienceSection,
   ProjectsSection,
   EducationSection,
-  ContactSection
+  ContactSection,
 } from './components/sections';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-secondary-950 text-secondary-300 antialiased selection:bg-primary-900 selection:text-primary-100">
+    <div className="min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50 text-neutral-800 antialiased selection:bg-primary-200 selection:text-primary-950">
       <Header />
 
       <main className="relative">

@@ -1,5 +1,5 @@
 // ============================================================================
-// BUTTON COMPONENT - UI Foundation
+// BUTTON
 // ============================================================================
 
 import React from 'react';
@@ -20,26 +20,21 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-secondary-950 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
+    'inline-flex items-center justify-center font-semibold transition-[color,background,box-shadow,border-color,transform] duration-smooth ease-out-expo focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed rounded-xl active:scale-[0.98]';
 
   const variantClasses = {
-    primary:
-      'bg-primary-500 hover:bg-primary-400 text-secondary-950 shadow-md hover:shadow-glow-cyan',
-    secondary:
-      'bg-secondary-800 hover:bg-secondary-700 text-secondary-100 border border-secondary-600',
-    outline:
-      'border-2 border-primary-500/60 text-primary-300 hover:bg-primary-500/10 hover:border-primary-400',
-    ghost: 'text-primary-300 hover:bg-secondary-800/80',
-    gradient:
-      'bg-gradient-to-r from-primary-500 via-primary-400 to-accent-500 hover:from-primary-400 hover:to-accent-400 text-secondary-950 shadow-md hover:shadow-glow-cyan',
-    'gradient-outline':
-      'border-2 border-transparent bg-clip-padding text-primary-200 hover:text-primary-100 ring-1 ring-inset ring-primary-500/40 hover:ring-primary-400/60',
+    primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm hover:shadow-md',
+    secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 border border-secondary-200',
+    outline: 'border-2 border-primary-600 text-primary-700 hover:bg-primary-50',
+    ghost: 'text-primary-700 hover:bg-primary-50',
+    gradient: 'bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-sm hover:shadow-md',
+    'gradient-outline': 'text-primary-800 ring-1 ring-inset ring-primary-300 hover:bg-primary-50',
   };
 
   const sizeClasses = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2.5 text-sm',
-    lg: 'px-6 py-3.5 text-base',
+    lg: 'px-6 py-3 text-base',
   };
 
   const computedClasses = clsx(

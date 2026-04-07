@@ -1,5 +1,5 @@
 // ============================================================================
-// CARD COMPONENT - UI Foundation
+// CARD — superficie clara, hover mínimo (translate + sombra)
 // ============================================================================
 
 import React from 'react';
@@ -14,14 +14,16 @@ const Card: React.FC<CardProps> = ({
   style,
   ...props
 }) => {
-  const baseClasses = 'rounded-2xl transition-all duration-300';
+  const baseClasses =
+    'rounded-2xl transition-[transform,box-shadow,border-color] duration-smooth ease-out-expo';
 
   const variantClasses = {
-    default: 'bg-secondary-900/60 backdrop-blur-sm border border-secondary-800/80 shadow-soft',
-    elevated: 'bg-secondary-900/80 backdrop-blur-md border border-secondary-800 shadow-medium hover:border-primary-500/25 hover:shadow-glow-cyan',
-    bordered: 'bg-secondary-900/40 border border-secondary-700/90 hover:border-primary-500/30',
-    gradient: 'bg-gradient-to-br from-secondary-900/90 via-secondary-900/70 to-secondary-950 border border-secondary-800/60 shadow-soft',
-    'gradient-border': 'relative bg-secondary-950 overflow-hidden shadow-medium hover:shadow-glow-violet',
+    default: 'bg-white border border-neutral-200/90 shadow-soft',
+    elevated: 'bg-white border border-neutral-200/80 shadow-soft hover:shadow-medium hover:-translate-y-0.5',
+    bordered: 'bg-primary-50/40 border border-primary-200/60 hover:border-primary-300/80',
+    gradient: 'bg-gradient-to-br from-white via-primary-50/50 to-secondary-50/80 border border-primary-100/60 shadow-soft',
+    'gradient-border':
+      'relative bg-white overflow-hidden shadow-soft hover:shadow-medium hover:-translate-y-0.5',
   };
 
   const paddingClasses = {
@@ -41,13 +43,11 @@ const Card: React.FC<CardProps> = ({
   if (variant === 'gradient-border') {
     return (
       <div
-        className="relative rounded-2xl p-px bg-gradient-to-br from-primary-500/50 via-accent-500/40 to-primary-600/50 shadow-medium hover:shadow-glow-violet transition-all duration-300"
+        className="relative rounded-2xl p-px bg-gradient-to-br from-primary-400/40 via-accent-500/35 to-primary-600/35 transition-all duration-smooth ease-out-expo hover:shadow-medium"
         style={style}
         {...props}
       >
-        <div className={clsx('w-full h-full rounded-2xl bg-secondary-950', paddingClasses[padding])}>
-          {children}
-        </div>
+        <div className={clsx('w-full h-full rounded-2xl bg-white', paddingClasses[padding])}>{children}</div>
       </div>
     );
   }

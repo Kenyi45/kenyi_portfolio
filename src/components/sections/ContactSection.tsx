@@ -3,7 +3,7 @@ import { Section, Card, Icon, Button } from '../ui';
 import { CONTACT_INFO, PERSONAL_INFO } from '../../constants/portfolio-data';
 
 const inputClass =
-  'w-full px-4 py-3 rounded-xl border border-secondary-700 bg-secondary-900/80 text-secondary-100 placeholder:text-secondary-600 focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-colors';
+  'w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white text-neutral-900 placeholder:text-neutral-400 shadow-sm focus:ring-2 focus:ring-primary-500/25 focus:border-primary-400 transition-[border-color,box-shadow] duration-smooth ease-out-expo';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -36,54 +36,60 @@ const ContactSection: React.FC = () => {
       eyebrow="Contacto"
       title="Hablemos de tu próximo sistema"
       subtitle="Respuesta típica en 24 h. Ideal si buscas alguien que piense en integraciones, datos y operación desde el día uno."
-      className="bg-secondary-900/35 border-t border-secondary-800/60"
+      className="bg-secondary-50/60 border-t border-neutral-200/90"
     >
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
         <div className="space-y-8">
           <div className="space-y-4">
-            <Card variant="bordered" padding="lg" className="group">
+            <Card variant="elevated" padding="lg" className="group">
               <div className="flex items-center gap-4">
-                <div className="rounded-xl border border-primary-500/25 bg-primary-500/10 p-3">
-                  <Icon name="Mail" size={22} className="text-primary-300" aria-hidden />
+                <div className="rounded-xl border border-primary-200 bg-primary-50 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-soft">
+                  <Icon name="Mail" size={22} className="text-primary-700" aria-hidden />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-secondary-100">Email</h4>
-                  <a href={`mailto:${CONTACT_INFO.email}`} className="text-sm text-primary-300 hover:text-primary-200 break-all">
+                  <h4 className="font-semibold text-neutral-900">Email</h4>
+                  <a
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    className="text-[length:var(--text-sm)] text-primary-700 hover:text-primary-800 break-all transition-colors duration-smooth"
+                  >
                     {CONTACT_INFO.email}
                   </a>
                 </div>
               </div>
             </Card>
 
-            <Card variant="bordered" padding="lg">
+            <Card variant="elevated" padding="lg" className="group">
               <div className="flex items-center gap-4">
-                <div className="rounded-xl border border-primary-500/25 bg-primary-500/10 p-3">
-                  <Icon name="Phone" size={22} className="text-primary-300" aria-hidden />
+                <div className="rounded-xl border border-primary-200 bg-primary-50 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-soft">
+                  <Icon name="Phone" size={22} className="text-primary-700" aria-hidden />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-secondary-100">Teléfono</h4>
-                  <a href={`tel:+51${CONTACT_INFO.phone}`} className="text-sm text-primary-300 hover:text-primary-200">
+                  <h4 className="font-semibold text-neutral-900">Teléfono</h4>
+                  <a
+                    href={`tel:+51${CONTACT_INFO.phone}`}
+                    className="text-[length:var(--text-sm)] text-primary-700 hover:text-primary-800 transition-colors duration-smooth"
+                  >
                     +51 {CONTACT_INFO.phone}
                   </a>
                 </div>
               </div>
             </Card>
 
-            <Card variant="bordered" padding="lg">
+            <Card variant="elevated" padding="lg" className="group">
               <div className="flex items-center gap-4">
-                <div className="rounded-xl border border-primary-500/25 bg-primary-500/10 p-3">
-                  <Icon name="MapPin" size={22} className="text-primary-300" aria-hidden />
+                <div className="rounded-xl border border-primary-200 bg-primary-50 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-soft">
+                  <Icon name="MapPin" size={22} className="text-primary-700" aria-hidden />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-secondary-100">Ubicación</h4>
-                  <p className="text-sm text-secondary-400">{CONTACT_INFO.location}</p>
+                  <h4 className="font-semibold text-neutral-900">Ubicación</h4>
+                  <p className="text-[length:var(--text-sm)] text-neutral-600">{CONTACT_INFO.location}</p>
                 </div>
               </div>
             </Card>
           </div>
 
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-secondary-500 mb-3">Redes</h3>
+            <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3">Redes</h3>
             <div className="flex flex-wrap gap-2">
               {CONTACT_INFO.socialLinks.map((social) => (
                 <a
@@ -91,7 +97,7 @@ const ContactSection: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl border border-secondary-700 bg-secondary-900/50 px-4 py-2.5 text-secondary-300 hover:border-primary-500/35 hover:text-primary-200 text-sm font-medium transition-colors inline-flex items-center gap-2"
+                  className="rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-neutral-700 hover:border-primary-300 hover:text-primary-800 text-[length:var(--text-sm)] font-medium transition-[color,border-color,transform] duration-smooth ease-out-expo hover:-translate-y-0.5 shadow-sm hover:shadow-soft inline-flex items-center gap-2"
                 >
                   <Icon name={social.icon} size={18} aria-hidden />
                   {social.platform}
@@ -105,15 +111,15 @@ const ContactSection: React.FC = () => {
             Descargar CV (PDF)
           </Button>
 
-          <Card variant="elevated" padding="lg">
+          <Card variant="bordered" padding="lg">
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-35" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
               </span>
               <div>
-                <h4 className="font-semibold text-secondary-100">Disponible para proyectos</h4>
-                <p className="text-secondary-500 text-sm">Colaboración remota o presencial en Lima.</p>
+                <h4 className="font-semibold text-neutral-900">Disponible para proyectos</h4>
+                <p className="text-neutral-600 text-[length:var(--text-sm)]">Colaboración remota o presencial en Lima.</p>
               </div>
             </div>
           </Card>
@@ -121,13 +127,13 @@ const ContactSection: React.FC = () => {
 
         <div>
           <Card variant="gradient-border" padding="xl">
-            <h3 className="font-display text-xl font-bold text-secondary-100 mb-2">Mensaje directo</h3>
-            <p className="text-secondary-500 text-sm mb-6">
+            <h3 className="font-display text-[length:var(--text-xl)] font-bold text-neutral-900 mb-2">Mensaje directo</h3>
+            <p className="text-neutral-600 text-[length:var(--text-sm)] mb-6 leading-relaxed">
               El envío abre tu cliente de correo con el texto prellenado; no almaceno datos en servidor.
             </p>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-secondary-300 mb-2">
+                <label htmlFor="name" className="block text-[length:var(--text-sm)] font-medium text-neutral-700 mb-2">
                   Nombre
                 </label>
                 <input
@@ -143,7 +149,7 @@ const ContactSection: React.FC = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-secondary-300 mb-2">
+                <label htmlFor="email" className="block text-[length:var(--text-sm)] font-medium text-neutral-700 mb-2">
                   Email
                 </label>
                 <input
@@ -159,7 +165,7 @@ const ContactSection: React.FC = () => {
                 />
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-secondary-300 mb-2">
+                <label htmlFor="subject" className="block text-[length:var(--text-sm)] font-medium text-neutral-700 mb-2">
                   Asunto
                 </label>
                 <input
@@ -174,7 +180,7 @@ const ContactSection: React.FC = () => {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-secondary-300 mb-2">
+                <label htmlFor="message" className="block text-[length:var(--text-sm)] font-medium text-neutral-700 mb-2">
                   Mensaje
                 </label>
                 <textarea
@@ -193,7 +199,7 @@ const ContactSection: React.FC = () => {
                 Abrir correo
               </Button>
             </form>
-            <p className="mt-4 text-xs text-secondary-600 text-center flex items-center justify-center gap-1">
+            <p className="mt-4 text-xs text-neutral-500 text-center flex items-center justify-center gap-1">
               <Icon name="Clock" size={14} aria-hidden />
               Respondo en ~24 horas hábiles
             </p>

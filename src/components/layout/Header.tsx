@@ -1,5 +1,5 @@
 // ============================================================================
-// HEADER COMPONENT - Navigation Layout
+// HEADER
 // ============================================================================
 
 import React, { useState, useEffect } from 'react';
@@ -20,17 +20,14 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 12);
+      setIsScrolled(window.scrollY > 8);
 
-      const sections = NAVIGATION_ITEMS.map((item) => item.id);
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
+      for (const item of NAVIGATION_ITEMS) {
+        const element = document.getElementById(item.id);
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= SCROLL_OFFSET && rect.bottom >= SCROLL_OFFSET) {
-            setActiveSection(sectionId);
+            setActiveSection(item.id);
             break;
           }
         }
@@ -44,66 +41,54 @@ const Header: React.FC = () => {
   const handleNavClick = (href: string) => {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-
     if (element) {
-      const top = element.offsetTop - SCROLL_OFFSET;
-      window.scrollTo({
-        top,
-        behavior: 'smooth',
-      });
+      window.scrollTo({ top: element.offsetTop - SCROLL_OFFSET, behavior: 'smooth' });
     }
-
     setIsMobileMenuOpen(false);
   };
 
-  const headerClasses = clsx(
-    'fixed top-0 w-full z-50 transition-[background,box-shadow,border-color] duration-300',
-    {
-      'glass-header shadow-soft': isScrolled,
-      'bg-transparent border-b border-transparent': !isScrolled,
-    }
-  );
-
   return (
-    <header className={headerClasses}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Principal">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <div className="flex-shrink-0">
-            <button
-              type="button"
-              onClick={() => handleNavClick('#home')}
-              className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-500/40 bg-secondary-900/80 font-mono text-sm font-semibold text-primary-300 shadow-sm group-hover:border-primary-400/60 group-hover:text-primary-200">
-                {initials}
+    <header
+      className={clsx(
+        'fixed top-0 w-full z-50 transition-[background,box-shadow] duration-smooth ease-out-expo',
+        isScrolled ? 'glass-header-light shadow-sm' : 'bg-transparent'
+      )}
+    >
+      <nav className="container-prose" aria-label="Principal">
+        <div className="flex items-center justify-between h-16 md:h-[4.25rem]">
+          <button
+            type="button"
+            onClick={() => handleNavClick('#home')}
+            className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-200 bg-white font-mono text-xs font-semibold text-primary-700 shadow-sm transition-colors duration-smooth group-hover:border-primary-400 group-hover:text-primary-800">
+              {initials}
+            </span>
+            <span className="hidden sm:block text-left">
+              <span className="block font-display text-sm font-semibold text-neutral-900">Kenyi Vega</span>
+              <span className="block font-mono text-[10px] uppercase tracking-wider text-primary-600/90">
+                Full stack · Arquitectura
               </span>
-              <span className="hidden sm:block text-left">
-                <span className="block font-display text-sm font-semibold text-secondary-100">Kenyi Vega</span>
-                <span className="block font-mono text-[10px] uppercase tracking-wider text-primary-400/90">Full stack · Arquitectura</span>
-              </span>
-            </button>
-          </div>
+            </span>
+          </button>
 
-          <div className="hidden lg:block">
-            <div className="flex items-center gap-1 rounded-2xl border border-secondary-800/80 bg-secondary-900/50 p-1 backdrop-blur-sm">
-              {NAVIGATION_ITEMS.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleNavClick(item.href)}
-                  className={clsx(
-                    'flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
-                    {
-                      'bg-secondary-800 text-primary-200 shadow-sm': activeSection === item.id,
-                      'text-secondary-400 hover:text-secondary-200 hover:bg-secondary-800/60': activeSection !== item.id,
-                    }
-                  )}
-                >
-                  <Icon name={item.icon!} size={16} className="opacity-80" aria-hidden="true" />
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          <div className="hidden lg:flex items-center gap-1 rounded-2xl border border-neutral-200/90 bg-white/70 p-1 backdrop-blur-sm">
+            {NAVIGATION_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleNavClick(item.href)}
+                className={clsx(
+                  'flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-smooth',
+                  activeSection === item.id
+                    ? 'bg-primary-50 text-primary-800 shadow-ring'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
+                )}
+              >
+                <Icon name={item.icon!} size={16} className="opacity-80" aria-hidden="true" />
+                {item.label}
+              </button>
+            ))}
           </div>
 
           <div className="hidden lg:block">
@@ -113,44 +98,41 @@ const Header: React.FC = () => {
             </Button>
           </div>
 
-          <div className="lg:hidden">
-            <button
-              type="button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="rounded-xl border border-secondary-700 p-2.5 text-secondary-300 hover:bg-secondary-800"
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-nav"
-              aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            >
-              <Icon name={isMobileMenuOpen ? 'X' : 'Menu'} size={22} />
-            </button>
-          </div>
+          <button
+            type="button"
+            className="lg:hidden rounded-xl border border-neutral-200 p-2.5 text-neutral-700 hover:bg-neutral-50 transition-colors duration-smooth"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav"
+            aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          >
+            <Icon name={isMobileMenuOpen ? 'X' : 'Menu'} size={22} />
+          </button>
         </div>
 
         {isMobileMenuOpen && (
           <div
             id="mobile-nav"
-            className="lg:hidden absolute left-0 right-0 top-full border-t border-secondary-800 bg-secondary-950/95 backdrop-blur-xl shadow-large"
+            className="lg:hidden absolute left-0 right-0 top-full border-t border-neutral-200 bg-white/95 backdrop-blur-lg shadow-medium"
           >
-            <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+            <div className="py-3 space-y-1">
               {NAVIGATION_ITEMS.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => handleNavClick(item.href)}
                   className={clsx(
-                    'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-base font-medium transition-colors',
-                    {
-                      'bg-secondary-800 text-primary-200': activeSection === item.id,
-                      'text-secondary-300 hover:bg-secondary-900': activeSection !== item.id,
-                    }
+                    'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-base font-medium transition-colors duration-smooth',
+                    activeSection === item.id
+                      ? 'bg-primary-50 text-primary-800'
+                      : 'text-neutral-700 hover:bg-neutral-50'
                   )}
                 >
                   <Icon name={item.icon!} size={20} aria-hidden="true" />
                   {item.label}
                 </button>
               ))}
-              <div className="pt-3">
+              <div className="pt-3 px-1">
                 <Button variant="primary" size="md" href="mailto:kenyiva45@gmail.com" external className="w-full justify-center">
                   <Icon name="Mail" size={16} className="mr-2" aria-hidden="true" />
                   Contáctame
