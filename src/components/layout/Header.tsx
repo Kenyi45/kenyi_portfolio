@@ -1,12 +1,13 @@
 // ============================================================================
-// HEADER
+// HEADER — estado de navegación vía NavigationContext (scroll spy unificado)
 // ============================================================================
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { clsx } from 'clsx';
 import { Icon, Button } from '../ui';
-import { NAVIGATION_ITEMS, SCROLL_OFFSET } from '../../constants/navigation';
+import { NAVIGATION_ITEMS } from '../../constants/navigation';
 import { PERSONAL_INFO } from '../../constants/portfolio-data';
+import { useNavigation } from '../../contexts/NavigationContext';
 
 const initials = PERSONAL_INFO.name
   .split(' ')
@@ -14,36 +15,11 @@ const initials = PERSONAL_INFO.name
   .join('');
 
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { activeSectionId, isHeaderCompact, navigateToSection } = useNavigation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 8);
-
-      for (const item of NAVIGATION_ITEMS) {
-        const element = document.getElementById(item.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= SCROLL_OFFSET && rect.bottom >= SCROLL_OFFSET) {
-            setActiveSection(item.id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleNavClick = (href: string) => {
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      window.scrollTo({ top: element.offsetTop - SCROLL_OFFSET, behavior: 'smooth' });
-    }
+  const onNavigate = (sectionId: string) => {
+    navigateToSection(sectionId);
     setIsMobileMenuOpen(false);
   };
 
@@ -51,14 +27,14 @@ const Header: React.FC = () => {
     <header
       className={clsx(
         'fixed top-0 w-full z-50 transition-[background,box-shadow] duration-smooth ease-out-expo',
-        isScrolled ? 'glass-header-light shadow-sm' : 'bg-transparent'
+        isHeaderCompact ? 'glass-header-light shadow-sm' : 'bg-transparent'
       )}
     >
       <nav className="container-prose" aria-label="Principal">
         <div className="flex items-center justify-between h-16 md:h-[4.25rem]">
           <button
             type="button"
-            onClick={() => handleNavClick('#home')}
+            onClick={() => onNavigate('home')}
             className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           >
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-200 bg-white font-mono text-xs font-semibold text-primary-700 shadow-sm transition-colors duration-smooth group-hover:border-primary-400 group-hover:text-primary-800">
@@ -77,10 +53,10 @@ const Header: React.FC = () => {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => handleNavClick(item.href)}
+                onClick={() => onNavigate(item.id)}
                 className={clsx(
                   'flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-smooth',
-                  activeSection === item.id
+                  activeSectionId === item.id
                     ? 'bg-primary-50 text-primary-800 shadow-ring'
                     : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
                 )}
@@ -120,10 +96,10 @@ const Header: React.FC = () => {
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => handleNavClick(item.href)}
+                  onClick={() => onNavigate(item.id)}
                   className={clsx(
                     'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-base font-medium transition-colors duration-smooth',
-                    activeSection === item.id
+                    activeSectionId === item.id
                       ? 'bg-primary-50 text-primary-800'
                       : 'text-neutral-700 hover:bg-neutral-50'
                   )}

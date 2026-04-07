@@ -49,6 +49,7 @@ export const NAVIGATION_ITEMS: readonly NavigationItem[] = [
   }
 ] as const;
 
-// Constantes para smooth scrolling
-export const SCROLL_OFFSET = 80; // Altura del header fijo
-export const SCROLL_BEHAVIOR: ScrollBehavior = 'smooth'; 
+/** @deprecated Prefer HEADER_SCROLL_OFFSET_PX desde navigation/constants vía useNavigation */
+export { HEADER_SCROLL_OFFSET_PX as SCROLL_OFFSET } from '../navigation/constants';
+
+export const SCROLL_BEHAVIOR: ScrollBehavior = 'smooth';

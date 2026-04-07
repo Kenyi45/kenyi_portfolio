@@ -3,6 +3,7 @@
 // ============================================================================
 
 import React from 'react';
+import { NavigationProvider } from './contexts/NavigationContext';
 import { Header, Footer } from './components/layout';
 import {
   HeroSection,
@@ -16,21 +17,23 @@ import {
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50 text-neutral-800 antialiased selection:bg-primary-200 selection:text-primary-950">
-      <Header />
+    <NavigationProvider>
+      <div className="min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50 text-neutral-800 antialiased selection:bg-primary-200 selection:text-primary-950">
+        <Header />
 
-      <main className="relative">
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <EducationSection />
-        <ContactSection />
-      </main>
+        <main className="relative">
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ExperienceSection />
+          <ProjectsSection />
+          <EducationSection />
+          <ContactSection />
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </NavigationProvider>
   );
 };
 

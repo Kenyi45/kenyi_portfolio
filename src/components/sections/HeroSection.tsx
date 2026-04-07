@@ -5,17 +5,16 @@
 import React from 'react';
 import { Button, Icon } from '../ui';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../../constants/portfolio-data';
+import { useNavigation } from '../../contexts/NavigationContext';
 
 const HeroSection: React.FC = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
-    }
-  };
+  const { navigateToSection } = useNavigation();
 
   return (
-    <section id="home" className="relative min-h-[100dvh] flex items-center pt-20 pb-16 md:pb-20 overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-[100dvh] flex items-center pt-20 pb-16 md:pb-20 overflow-hidden scroll-mt-20"
+    >
       <div className="pointer-events-none absolute inset-0 page-grid-bg opacity-50" aria-hidden />
       <div
         className="pointer-events-none absolute -top-32 right-[-25%] h-[min(28rem,50vw)] w-[min(28rem,50vw)] rounded-full bg-primary-300/25 blur-[100px] motion-safe:animate-pulse"
@@ -53,7 +52,7 @@ const HeroSection: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
-              <Button variant="primary" size="lg" onClick={() => scrollToSection('projects')} className="justify-center">
+              <Button variant="primary" size="lg" onClick={() => navigateToSection('projects')} className="justify-center">
                 <Icon name="FolderOpen" size={20} className="mr-2" aria-hidden />
                 Proyectos
               </Button>
@@ -133,7 +132,7 @@ const HeroSection: React.FC = () => {
         <div className="flex justify-center mt-14 lg:mt-12">
           <button
             type="button"
-            onClick={() => scrollToSection('about')}
+            onClick={() => navigateToSection('about')}
             className="flex flex-col items-center gap-1 text-neutral-500 hover:text-primary-700 transition-colors duration-smooth rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 px-4 py-2"
             aria-label="Ir a la sección Acerca de"
           >

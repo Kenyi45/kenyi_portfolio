@@ -1,6 +1,8 @@
 import React from 'react';
 import { Icon } from '../ui';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../../constants/portfolio-data';
+import { NAVIGATION_ITEMS } from '../../constants/navigation';
+import { useNavigation } from '../../contexts/NavigationContext';
 
 const initials = PERSONAL_INFO.name
   .split(' ')
@@ -8,7 +10,9 @@ const initials = PERSONAL_INFO.name
   .join('');
 
 const Footer: React.FC = () => {
+  const { navigateToSection } = useNavigation();
   const currentYear = new Date().getFullYear();
+  const footerLinks = NAVIGATION_ITEMS.filter((item) => item.id !== 'home');
 
   return (
     <footer className="relative border-t border-primary-800/40 bg-primary-950 text-primary-100">
@@ -46,23 +50,20 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-display font-semibold text-white mb-4">Mapa</h4>
             <ul className="space-y-2 text-sm">
-              {['about', 'skills', 'experience', 'projects', 'education', 'contact'].map((id) => {
-                const labels: Record<string, string> = {
-                  about: 'Acerca de',
-                  skills: 'Stack',
-                  experience: 'Experiencia',
-                  projects: 'Proyectos',
-                  education: 'Educación',
-                  contact: 'Contacto',
-                };
-                return (
-                  <li key={id}>
-                    <a href={`#${id}`} className="text-primary-200/90 hover:text-white transition-colors duration-smooth">
-                      {labels[id]}
-                    </a>
-                  </li>
-                );
-              })}
+              {footerLinks.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToSection(item.id);
+                    }}
+                    className="text-primary-200/90 hover:text-white transition-colors duration-smooth"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 

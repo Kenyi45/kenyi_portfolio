@@ -40,6 +40,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Alinea anclas nativas (#sección) con header fijo (~80px) */
+    scroll-padding-top: 5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {

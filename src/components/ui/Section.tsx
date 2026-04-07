@@ -17,7 +17,7 @@ const Section: React.FC<SectionProps> = ({
   ...props
 }) => {
   const { ref, visible } = useSectionReveal<HTMLElement>();
-  const baseClasses = 'section-padding relative';
+  const baseClasses = 'section-padding relative scroll-mt-20';
 
   return (
     <section
