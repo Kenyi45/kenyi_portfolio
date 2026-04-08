@@ -92,9 +92,9 @@ const Footer: React.FC = () => {
           <p>© {currentYear} {PERSONAL_INFO.name}. Todos los derechos reservados.</p>
           <p className="flex items-center gap-2">
             <span>React</span>
-            <span className="text-primary-600">·</span>
+            <span className="text-accent-500">·</span>
             <span>TypeScript</span>
-            <span className="text-primary-600">·</span>
+            <span className="text-accent-500">·</span>
             <span>Tailwind</span>
           </p>
         </div>

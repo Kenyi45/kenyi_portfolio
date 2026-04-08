@@ -24,6 +24,8 @@
     --text-2xl: clamp(1.45rem, 1.2vw + 1rem, 1.85rem);
     --space-block: clamp(1.25rem, 3vw, 2rem);
     --space-section-y: clamp(3rem, 8vw, 5rem);
+    /* Fluid section padding: mobile-first (clamp ≈ 3.5rem → 6rem) */
+    --section-pad-y: clamp(3.5rem, 8vw, 6rem);
   }
 
   html {
@@ -55,11 +57,11 @@
   }
 
   ::selection {
-    @apply bg-primary-500/25 text-neutral-50;
+    @apply bg-accent-600/35 text-neutral-50;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-primary-400/70 ring-offset-2 ring-offset-ink-base;
+    @apply outline-none ring-2 ring-accent-400/80 ring-offset-2 ring-offset-ink-base;
   }
 
   .page-grid-bg {
@@ -124,9 +126,9 @@
   .text-gradient {
     background: linear-gradient(
       118deg,
-      theme('colors.primary.300') 0%,
-      theme('colors.accent.400') 52%,
-      theme('colors.primary.500') 100%
+      theme('colors.primary.400') 0%,
+      theme('colors.accent.400') 48%,
+      theme('colors.accent.600') 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -134,21 +136,21 @@
   }
 
   .glass-header-dark {
-    @apply backdrop-blur-md border-b shadow-card-ink;
-    background-color: rgb(18 24 38 / 0.78);
-    border-color: rgba(100, 116, 139, 0.22);
+    @apply backdrop-blur-md border-b border-ink-line shadow-card-ink;
+    background-color: rgb(79 106 143 / 0.82);
   }
 
   .container-prose {
-    @apply max-w-7xl mx-auto;
-    padding-left: clamp(1rem, 4vw, 2rem);
-    padding-right: clamp(1rem, 4vw, 2rem);
+    @apply max-w-7xl mx-auto w-full;
+    padding-left: max(clamp(1rem, 4vw, 2rem), env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(1rem, 4vw, 2rem), env(safe-area-inset-right, 0px));
   }
 }
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-20 lg:py-24;
+    padding-top: var(--section-pad-y);
+    padding-bottom: var(--section-pad-y);
   }
 
   .section-paper-texture {
@@ -172,5 +174,11 @@
   }
   .gap-phi {
     gap: var(--gap-phi);
+  }
+
+  /** WCAG / HIG: área táctil mínima ~44px en controles críticos */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
