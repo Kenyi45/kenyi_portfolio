@@ -109,16 +109,16 @@ const ExperienceSection: React.FC = () => {
               <li key={job.id} className="relative">
                 <div
                   className={clsx(
-                    'md:hidden absolute left-0 top-8 h-3 w-3 rounded-full border-2 border-paper bg-primary-500 shadow-[0_0_0_3px_rgba(136,162,188,0.35)]',
-                    index === 0 && 'bg-accent-600 shadow-[0_0_0_4px_rgba(217,148,119,0.35)]'
+                    'md:hidden absolute left-0 top-8 h-3 w-3 rounded-full border-2 border-paper bg-primary-500 shadow-[0_0_0_3px_rgba(6,182,212,0.22)]',
+                    index === 0 && 'bg-primary-600 shadow-[0_0_0_4px_rgba(6,182,212,0.3)]'
                   )}
                   aria-hidden
                 />
 
                 <div
                   className={clsx(
-                    'hidden md:block absolute left-1/2 top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-[3px] border-paper bg-primary-500 shadow-[0_0_0_4px_rgba(136,162,188,0.32)]',
-                    index === 0 && 'bg-accent-600 shadow-[0_0_0_5px_rgba(217,148,119,0.38)]'
+                    'hidden md:block absolute left-1/2 top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-[3px] border-paper bg-primary-500 shadow-[0_0_0_4px_rgba(6,182,212,0.22)]',
+                    index === 0 && 'bg-primary-600 shadow-[0_0_0_5px_rgba(6,182,212,0.32)]'
                   )}
                   aria-hidden
                 />

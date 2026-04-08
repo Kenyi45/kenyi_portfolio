@@ -20,18 +20,18 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center font-semibold transition-[color,background,box-shadow,border-color,transform] duration-smooth ease-out-expo focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-base disabled:opacity-50 disabled:cursor-not-allowed rounded-xl active:scale-[0.98]';
+    'inline-flex items-center justify-center font-semibold transition-[color,background,box-shadow,border-color,transform] duration-smooth ease-out-expo focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-base disabled:opacity-50 disabled:cursor-not-allowed rounded-xl active:scale-[0.98]';
 
   const variantClasses = {
     primary:
-      'bg-accent-600 hover:bg-accent-500 text-white shadow-brutal-clay hover:shadow-lg hover:brightness-[1.03]',
+      'bg-primary-500 hover:bg-primary-400 text-ink-base shadow-brutal-cyan hover:shadow-lg hover:brightness-105',
     secondary:
       'bg-neutral-800/90 hover:bg-neutral-800 text-neutral-100 border border-ink-line',
     outline:
       'border-2 border-primary-400 text-primary-300 hover:bg-primary-500/10 hover:border-primary-300',
     ghost: 'text-primary-300 hover:bg-white/5',
     gradient:
-      'bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-400 hover:to-accent-500 text-white shadow-md',
+      'bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-400 hover:to-accent-400 text-ink-base shadow-md',
     'gradient-outline':
       'text-primary-200 ring-1 ring-inset ring-primary-500/50 hover:bg-primary-500/10',
   };

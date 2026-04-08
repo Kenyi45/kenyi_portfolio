@@ -43,7 +43,7 @@ const ContactSection: React.FC = () => {
           <div className="space-y-4">
             <Card variant="elevated" surface="ink" padding="lg" className="group">
               <div className="flex items-center gap-4">
-                <div className="rounded-xl border border-primary-500/35 bg-primary-950/40 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-brutal-steel">
+                <div className="rounded-xl border border-primary-500/35 bg-primary-950/40 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-brutal-cyan">
                   <Icon name="Mail" size={22} className="text-primary-400" aria-hidden />
                 </div>
                 <div>
@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
 
             <Card variant="elevated" surface="ink" padding="lg" className="group">
               <div className="flex items-center gap-4">
-                <div className="rounded-xl border border-primary-500/35 bg-primary-950/40 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-brutal-steel">
+                <div className="rounded-xl border border-primary-500/35 bg-primary-950/40 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-brutal-cyan">
                   <Icon name="Phone" size={22} className="text-primary-400" aria-hidden />
                 </div>
                 <div>
@@ -77,7 +77,7 @@ const ContactSection: React.FC = () => {
 
             <Card variant="elevated" surface="ink" padding="lg" className="group">
               <div className="flex items-center gap-4">
-                <div className="rounded-xl border border-primary-500/35 bg-primary-950/40 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-brutal-steel">
+                <div className="rounded-xl border border-primary-500/35 bg-primary-950/40 p-3 transition-[transform,box-shadow] duration-smooth group-hover:shadow-brutal-cyan">
                   <Icon name="MapPin" size={22} className="text-primary-400" aria-hidden />
                 </div>
                 <div>
@@ -97,7 +97,7 @@ const ContactSection: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl border border-ink-line bg-ink-raised px-4 py-2.5 text-neutral-200 hover:border-primary-500/45 hover:text-primary-300 text-[length:var(--text-sm)] font-medium transition-[color,border-color,transform] duration-smooth ease-out-expo hover:-translate-y-0.5 shadow-card-ink hover:shadow-brutal-steel inline-flex items-center gap-2"
+                  className="rounded-xl border border-ink-line bg-ink-raised px-4 py-2.5 text-neutral-200 hover:border-primary-500/45 hover:text-primary-300 text-[length:var(--text-sm)] font-medium transition-[color,border-color,transform] duration-smooth ease-out-expo hover:-translate-y-0.5 shadow-card-ink hover:shadow-brutal-cyan inline-flex items-center gap-2"
                 >
                   <Icon name={social.icon} size={18} aria-hidden />
                   {social.platform}

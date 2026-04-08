@@ -35,7 +35,7 @@ const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => onNavigate('home')}
-            className="group flex items-center gap-3 rounded-xl py-1 -my-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 min-h-11 sm:min-h-0"
+            className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
           >
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-500/40 bg-ink-raised font-mono text-xs font-semibold text-primary-300 shadow-card-ink transition-colors duration-smooth group-hover:border-primary-400 group-hover:text-primary-200">
               {initials}
@@ -76,7 +76,7 @@ const Header: React.FC = () => {
 
           <button
             type="button"
-            className="lg:hidden touch-target inline-flex items-center justify-center rounded-xl border border-ink-line bg-ink-raised/80 text-neutral-200 hover:bg-white/5 transition-colors duration-smooth"
+            className="lg:hidden rounded-xl border border-ink-line bg-ink-raised/80 p-2.5 text-neutral-200 hover:bg-white/5 transition-colors duration-smooth"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-nav"

@@ -91,7 +91,7 @@ const HeroSection: React.FC = () => {
 
           <div className="lg:col-span-5 @container">
             <div className="relative mx-auto max-w-md lg:max-w-none motion-safe:animate-slide-up [animation-delay:80ms] [animation-fill-mode:both]">
-              <div className="rounded-3xl border border-primary-400/45 bg-ink-raised/95 shadow-brutal-steel overflow-hidden transition-shadow duration-smooth hover:shadow-lg">
+              <div className="rounded-3xl border border-primary-500/40 bg-ink-raised/95 shadow-brutal-cyan overflow-hidden transition-shadow duration-smooth hover:shadow-lg">
                 <div className="flex items-center gap-2 border-b border-ink-line px-4 py-3 bg-ink-base/90">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" aria-hidden />
                   <span className="h-2.5 w-2.5 rounded-full bg-accent-400/90" aria-hidden />
@@ -104,9 +104,7 @@ const HeroSection: React.FC = () => {
                     <img
                       src="/perfil.jpeg"
                       alt={`Retrato de ${PERSONAL_INFO.name}`}
-                      className="h-36 w-36 @md:h-40 @md:w-40 rounded-2xl object-cover ring-2 ring-primary-400/50 shadow-card-ink"
-                      decoding="async"
-                      fetchPriority="high"
+                      className="h-36 w-36 @md:h-40 @md:w-40 rounded-2xl object-cover ring-2 ring-primary-500/40 shadow-card-ink"
                     />
                   </div>
 
