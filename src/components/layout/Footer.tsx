@@ -15,20 +15,20 @@ const Footer: React.FC = () => {
   const footerLinks = NAVIGATION_ITEMS.filter((item) => item.id !== 'home');
 
   return (
-    <footer className="relative border-t border-primary-800/40 bg-primary-950 text-primary-100">
+    <footer className="relative border-t border-ink-line bg-ink-raised text-neutral-300">
       <div className="container-prose py-14 md:py-16">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-600/50 bg-primary-900 font-mono text-xs font-semibold text-primary-200">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-500/35 bg-ink-base font-mono text-xs font-semibold text-primary-300">
                 {initials}
               </span>
               <div>
-                <p className="font-display font-semibold text-white">{PERSONAL_INFO.name}</p>
-                <p className="font-mono text-[10px] uppercase tracking-wider text-primary-300/90">Full stack · Arquitectura</p>
+                <p className="font-display font-semibold text-neutral-50">{PERSONAL_INFO.name}</p>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-primary-400/90">Full stack · Arquitectura</p>
               </div>
             </div>
-            <p className="text-primary-200/90 leading-relaxed text-sm mb-6 max-w-sm">
+            <p className="text-neutral-400 leading-relaxed text-sm mb-6 max-w-sm">
               Sistemas integrados, contratos de API y entregas mantenibles.
             </p>
             <div className="flex gap-2">
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl border border-primary-700/60 bg-primary-900/40 p-2.5 text-primary-200 hover:border-primary-500 hover:text-white transition-colors duration-smooth"
+                  className="rounded-xl border border-ink-line bg-ink-base/60 p-2.5 text-neutral-400 hover:border-primary-500/50 hover:text-primary-300 transition-colors duration-smooth"
                   aria-label={social.platform}
                 >
                   <Icon name={social.icon} size={18} aria-hidden />
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-white mb-4">Mapa</h4>
+            <h4 className="font-display font-semibold text-neutral-50 mb-4">Mapa</h4>
             <ul className="space-y-2 text-sm">
               {footerLinks.map((item) => (
                 <li key={item.id}>
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
                       e.preventDefault();
                       navigateToSection(item.id);
                     }}
-                    className="text-primary-200/90 hover:text-white transition-colors duration-smooth"
+                    className="text-neutral-400 hover:text-primary-300 transition-colors duration-smooth"
                   >
                     {item.label}
                   </a>
@@ -68,11 +68,11 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-white mb-4">Contacto</h4>
-            <div className="space-y-3 text-sm text-primary-200/90">
+            <h4 className="font-display font-semibold text-neutral-50 mb-4">Contacto</h4>
+            <div className="space-y-3 text-sm text-neutral-400">
               <div className="flex items-center gap-2">
                 <Icon name="Mail" size={16} className="text-primary-400 shrink-0" aria-hidden />
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-white transition-colors break-all">
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-primary-300 transition-colors break-all">
                   {PERSONAL_INFO.email}
                 </a>
               </div>
@@ -88,13 +88,13 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-800/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-300/80">
+        <div className="border-t border-ink-line pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
           <p>© {currentYear} {PERSONAL_INFO.name}. Todos los derechos reservados.</p>
           <p className="flex items-center gap-2">
             <span>React</span>
-            <span className="text-primary-700">·</span>
+            <span className="text-primary-600">·</span>
             <span>TypeScript</span>
-            <span className="text-primary-700">·</span>
+            <span className="text-primary-600">·</span>
             <span>Tailwind</span>
           </p>
         </div>

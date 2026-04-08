@@ -20,15 +20,20 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center font-semibold transition-[color,background,box-shadow,border-color,transform] duration-smooth ease-out-expo focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed rounded-xl active:scale-[0.98]';
+    'inline-flex items-center justify-center font-semibold transition-[color,background,box-shadow,border-color,transform] duration-smooth ease-out-expo focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-base disabled:opacity-50 disabled:cursor-not-allowed rounded-xl active:scale-[0.98]';
 
   const variantClasses = {
-    primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm hover:shadow-md',
-    secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 border border-secondary-200',
-    outline: 'border-2 border-primary-600 text-primary-700 hover:bg-primary-50',
-    ghost: 'text-primary-700 hover:bg-primary-50',
-    gradient: 'bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-sm hover:shadow-md',
-    'gradient-outline': 'text-primary-800 ring-1 ring-inset ring-primary-300 hover:bg-primary-50',
+    primary:
+      'bg-primary-500 hover:bg-primary-400 text-ink-base shadow-brutal-cyan hover:shadow-lg hover:brightness-105',
+    secondary:
+      'bg-neutral-800/90 hover:bg-neutral-800 text-neutral-100 border border-ink-line',
+    outline:
+      'border-2 border-primary-400 text-primary-300 hover:bg-primary-500/10 hover:border-primary-300',
+    ghost: 'text-primary-300 hover:bg-white/5',
+    gradient:
+      'bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-400 hover:to-accent-400 text-ink-base shadow-md',
+    'gradient-outline':
+      'text-primary-200 ring-1 ring-inset ring-primary-500/50 hover:bg-primary-500/10',
   };
 
   const sizeClasses = {

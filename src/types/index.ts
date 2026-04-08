@@ -82,10 +82,14 @@ export interface SectionProps extends BaseComponentProps {
   readonly subtitle?: string;
   /** Etiqueta pequeña monoespaciada sobre el título (estilo “case study”) */
   readonly eyebrow?: string;
+  /** Superficie de la sección: tinta (oscuro) o papel (banda clara) */
+  readonly tone?: 'ink' | 'paper';
 }
 
 export interface CardProps extends BaseComponentProps {
   readonly variant?: 'default' | 'elevated' | 'bordered' | 'gradient' | 'gradient-border';
+  /** Superficie: piezas oscuras sobre tinta o claras sobre papel */
+  readonly surface?: 'ink' | 'paper';
   readonly padding?: 'sm' | 'md' | 'lg' | 'xl';
 }
 

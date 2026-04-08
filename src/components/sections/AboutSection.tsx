@@ -35,10 +35,10 @@ const AboutSection: React.FC = () => {
   return (
     <Section
       id="about"
+      tone="paper"
       eyebrow="Perfil"
       title="Arquitectura práctica sobre código"
       subtitle="Conecto requisitos de negocio con diseño de sistemas: integraciones, datos y despliegue, sin perder de vista la mantenibilidad."
-      className="bg-white/60 border-y border-neutral-200/80"
     >
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         <div className="space-y-8">
@@ -74,7 +74,7 @@ const AboutSection: React.FC = () => {
 
         <div className="grid grid-cols-2 gap-4 @md:gap-5">
           {highlights.map((h) => (
-            <Card key={h.title} variant="bordered" padding="lg" className="group hover:-translate-y-0.5">
+            <Card key={h.title} variant="bordered" surface="paper" padding="lg" className="group hover:-translate-y-0.5">
               <div className="mb-4 inline-flex rounded-xl border border-primary-100 bg-primary-50 p-3 transition-colors duration-smooth group-hover:border-primary-200">
                 <Icon name={h.icon} size={22} className="text-primary-700" aria-hidden />
               </div>
@@ -89,7 +89,7 @@ const AboutSection: React.FC = () => {
         <p className="font-mono text-[length:var(--text-xs)] uppercase tracking-[0.2em] text-primary-700 mb-6">Áreas de trabajo</p>
         <div className="grid md:grid-cols-3 gap-6">
           {pillars.map((p) => (
-            <Card key={p.title} variant="elevated" padding="lg" className="h-full">
+            <Card key={p.title} variant="elevated" surface="paper" padding="lg" className="h-full">
               <Icon name={p.icon} size={32} className="text-accent-600 mb-4" aria-hidden />
               <h4 className="font-display font-semibold text-neutral-900 mb-2">{p.title}</h4>
               <p className="text-neutral-600 text-[length:var(--text-sm)] leading-relaxed">{p.body}</p>

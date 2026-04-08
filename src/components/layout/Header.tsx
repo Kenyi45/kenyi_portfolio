@@ -27,7 +27,7 @@ const Header: React.FC = () => {
     <header
       className={clsx(
         'fixed top-0 w-full z-50 transition-[background,box-shadow] duration-smooth ease-out-expo',
-        isHeaderCompact ? 'glass-header-light shadow-sm' : 'bg-transparent'
+        isHeaderCompact ? 'glass-header-dark' : 'bg-transparent'
       )}
     >
       <nav className="container-prose" aria-label="Principal">
@@ -35,20 +35,20 @@ const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => onNavigate('home')}
-            className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-200 bg-white font-mono text-xs font-semibold text-primary-700 shadow-sm transition-colors duration-smooth group-hover:border-primary-400 group-hover:text-primary-800">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-500/40 bg-ink-raised font-mono text-xs font-semibold text-primary-300 shadow-card-ink transition-colors duration-smooth group-hover:border-primary-400 group-hover:text-primary-200">
               {initials}
             </span>
             <span className="hidden sm:block text-left">
-              <span className="block font-display text-sm font-semibold text-neutral-900">Kenyi Vega</span>
-              <span className="block font-mono text-[10px] uppercase tracking-wider text-primary-600/90">
+              <span className="block font-display text-sm font-semibold text-neutral-50">Kenyi Vega</span>
+              <span className="block font-mono text-[10px] uppercase tracking-wider text-primary-400/90">
                 Full stack · Arquitectura
               </span>
             </span>
           </button>
 
-          <div className="hidden lg:flex items-center gap-1 rounded-2xl border border-neutral-200/90 bg-white/70 p-1 backdrop-blur-sm">
+          <div className="hidden lg:flex items-center gap-1 rounded-2xl border border-ink-line bg-ink-raised/75 p-1 backdrop-blur-sm">
             {NAVIGATION_ITEMS.map((item) => (
               <button
                 key={item.id}
@@ -57,8 +57,8 @@ const Header: React.FC = () => {
                 className={clsx(
                   'flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-smooth',
                   activeSectionId === item.id
-                    ? 'bg-primary-50 text-primary-800 shadow-ring'
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
+                    ? 'bg-primary-500/15 text-primary-200 shadow-ring'
+                    : 'text-neutral-400 hover:text-neutral-100 hover:bg-white/5'
                 )}
               >
                 <Icon name={item.icon!} size={16} className="opacity-80" aria-hidden="true" />
@@ -76,7 +76,7 @@ const Header: React.FC = () => {
 
           <button
             type="button"
-            className="lg:hidden rounded-xl border border-neutral-200 p-2.5 text-neutral-700 hover:bg-neutral-50 transition-colors duration-smooth"
+            className="lg:hidden rounded-xl border border-ink-line bg-ink-raised/80 p-2.5 text-neutral-200 hover:bg-white/5 transition-colors duration-smooth"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-nav"
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
         {isMobileMenuOpen && (
           <div
             id="mobile-nav"
-            className="lg:hidden absolute left-0 right-0 top-full border-t border-neutral-200 bg-white/95 backdrop-blur-lg shadow-medium"
+            className="lg:hidden absolute left-0 right-0 top-full border-t border-ink-line bg-ink-raised/95 backdrop-blur-lg shadow-card-ink"
           >
             <div className="py-3 space-y-1">
               {NAVIGATION_ITEMS.map((item) => (
@@ -100,8 +100,8 @@ const Header: React.FC = () => {
                   className={clsx(
                     'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-base font-medium transition-colors duration-smooth',
                     activeSectionId === item.id
-                      ? 'bg-primary-50 text-primary-800'
-                      : 'text-neutral-700 hover:bg-neutral-50'
+                      ? 'bg-primary-500/15 text-primary-200'
+                      : 'text-neutral-300 hover:bg-white/5'
                   )}
                 >
                   <Icon name={item.icon!} size={20} aria-hidden="true" />

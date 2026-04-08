@@ -18,7 +18,7 @@ import {
 const App: React.FC = () => {
   return (
     <NavigationProvider>
-      <div className="min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50 text-neutral-800 antialiased selection:bg-primary-200 selection:text-primary-950">
+      <div className="min-h-screen bg-ink-base text-neutral-50 antialiased">
         <Header />
 
         <main className="relative">
